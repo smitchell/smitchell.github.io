@@ -100,6 +100,47 @@ var s,
         }
     };
 
+// https://dev.to/albogdano/implementing-full-text-search-for-your-static-site-4ool
+var APPID = "app:my-blog";
+var ENDPOINT = "https://paraio.com/v1";
+
+$.ajaxSetup({
+    headers: {'Authorization': 'Anonymous ' + APPID}
+});
+
+var blogposts = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+        url: ENDPOINT + '/blogposts?q=%QUERY',
+        wildcard: '%QUERY',
+        transform: function (res) {
+            return res.items || [];
+        }
+    }
+});
+
+$('#search-box').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 3
+    },
+    {
+        name: 'blogposts',
+        source: blogposts,
+        templates: {
+            notFound: '<i>No results.</i>'
+        },
+        display: function (result) {
+            return result.name;
+        }
+    });
+
+$('#search-box').bind('typeahead:select', function (ev, result) {
+    window.location = result.url || '';
+});
+
+
 $(document).ready(function(){
     app.init();
 });

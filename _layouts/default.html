@@ -8,13 +8,14 @@
     {{ content }}
 
     <script src='{{ "/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js" | prepend: site.baseurl }}'></script>
-    <script src="{{'/js/vendor/jquery-1.11.2.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{'/js/vendor/jquery-3.4.1.min.js' | prepend: site.baseurl }}"></script>
     <script src='{{ "/js/vendor/jquery.jpanelmenu.min.js" | prepend: site.baseurl }}'></script>
     <script type='application/javascript' src='{{ "/js/vendor/fastclick.min.js" | prepend: site.baseurl }}'></script>
     {% if enable_retina %}
     <script type='application/javascript' src='{{ "/js/vendor/retina.min.js" | prepend: site.baseurl }}'></script>
     {% endif %}
     <script src=' {{ "/js/main.js" | prepend: site.baseurl }}'></script>
+    <script src="{{ '/js/vendor/typeahead.js' | prepend: site.baseurl }}"></script>
     <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
   </body>
 
