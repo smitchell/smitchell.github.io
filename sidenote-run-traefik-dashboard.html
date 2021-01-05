@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | How to Enable the Traefik Dashboard</title>
+    <meta name="description" content="        Traefik Dashboard">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/sidenote-run-traefik-dashboard">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="How to Enable the Traefik Dashboard" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/sidenote-run-traefik-dashboard" property="og:url">
+    
+    
+    <meta content="2020-12-09T00:00:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="side-notes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="How to Enable the Traefik Dashboard">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/sidenote-run-traefik-dashboard">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Enable the Traefik Dashboard | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Enable the Traefik Dashboard" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Traefik Dashboard" />
+<meta property="og:description" content="Traefik Dashboard" />
+<link rel="canonical" href="https://smitchell.github.io/sidenote-run-traefik-dashboard" />
+<meta property="og:url" content="https://smitchell.github.io/sidenote-run-traefik-dashboard" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-09T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Traefik Dashboard","url":"https://smitchell.github.io/sidenote-run-traefik-dashboard","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/sidenote-run-traefik-dashboard"},"headline":"How to Enable the Traefik Dashboard","dateModified":"2020-12-09T00:00:00+00:00","datePublished":"2020-12-09T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header>
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/side-notes'>Side notes</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 5 minutes
+            </p>
+
+            <h1>How to Enable the Traefik Dashboard</h1>
+
+            <figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/Traefik_dashboard.png" alt="Traefik Dashboard" class="center-image" />
+    <figcaption class="image-caption">Traefik Dashboard</figcaption>
+</figure>
+
+<p>The Traefik ingress controller is included out-of-the-box with Rancher k3s. It deploys into the kube-system namespace. Take a moment to have a look at the kube-system namespace.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>kubectl <span class="nt">-n</span> kube-system get all
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/kube-system-namespace.png" alt="Traefik System Namespace" class="center-image" />
+    <figcaption class="image-caption">Traefik System Namespace</figcaption>
+</figure>
+
+<p>While the service, “service/traefik,” is running, the dashboard is not. To enable the dashboard, edit the config map. The name of the config map is specified in the Traefik deployment at Volumes → config → name.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>kubectl <span class="nt">-n</span> kube.system describe deploy traefik
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/traefik-config-map.png" alt="Section of the Traefik Deployment YAML" class="center-image" />
+    <figcaption class="image-caption">Section of the Traefik Deployment YAML</figcaption>
+</figure>
+
+<p>Edit the “traefik” config map and add a section named “api” with an attribute of “dashboard” equal to true.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>kubectl <span class="nt">-n</span> kube-system edit cm traefik
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/enable-dashboard.png" alt="Enable the Traefik Dashboard" class="center-image" />
+    <figcaption class="image-caption">Enable the Traefik Dashboard</figcaption>
+</figure>
+
+<p>Bounce Traefik to pick up the updated config map by scaling it down to zero, then back up to one.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>kubectl <span class="nt">-n</span> kube-system scale deploy traefik <span class="nt">--replicas</span> 0
+kubectl <span class="nt">-n</span> kube-system scale deploy traefik <span class="nt">--replicas</span> 1
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/bounce_traefik.png" alt="Bounce the Traefik Pods" class="center-image" />
+    <figcaption class="image-caption">Bounce the Traefik Pods</figcaption>
+</figure>
+
+<p>Start port forwarding to the Traefik service.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/forward_to_deployment.png" alt="Forward to the Traefik Service" class="center-image" />
+    <figcaption class="image-caption">Forward to the Traefik Service</figcaption>
+</figure>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nb">export </span><span class="nv">KUBECONFIG</span><span class="o">=</span>~/kubeconfig
+kubectl <span class="nt">-n</span> kube-system port-forward deployment/traefik 8080 &amp;
+kubectl proxy &amp;
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/traefik_port_forwarding.png" alt="Port Forwarding" class="center-image" />
+    <figcaption class="image-caption">Port Forwarding</figcaption>
+</figure>
+
+<p>Finally, open the dashboard at <a href="http://localhost:8080/dashboard">http://localhost:8080/dashboard</a>.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-traefik-dashboard/Traefik_dashboard.png" alt="Traefik Dashboard" class="center-image" />
+    <figcaption class="image-caption">Traefik Dashboard</figcaption>
+</figure>
+
+<hr />
+<h1 id="references">References</h1>
+<p><a href="https://www.youtube.com/watch?v=12taKl5iCpA">Rancher K3S Ingress Demo with Traefik</a></p>
+
+
+
+            
+            
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/sidenote-run-traefik-dashboard';
+        this.page.identifier = 'https://smitchell.github.io/sidenote-run-traefik-dashboard';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

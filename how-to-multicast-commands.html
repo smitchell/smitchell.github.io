@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | How to Multicast Commands</title>
+    <meta name="description" content="If you are more Dev than Ops, like me, then you will think this is cool. If you are more Ops than Dev, then you already know how to do this. When I press ⌘-⇧...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/how-to-multicast-commands">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="How to Multicast Commands" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/how-to-multicast-commands" property="og:url">
+    
+    
+    <meta content="2020-03-07T00:00:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="side-notes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="How to Multicast Commands">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/how-to-multicast-commands">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Multicast Commands | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Multicast Commands" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="If you are more Dev than Ops, like me, then you will think this is cool. If you are more Ops than Dev, then you already know how to do this. When I press ⌘-⇧-P from iTerm I am immediately connected to all my Raspberry Pis at the same time. It’s great for running simultaneous software updates." />
+<meta property="og:description" content="If you are more Dev than Ops, like me, then you will think this is cool. If you are more Ops than Dev, then you already know how to do this. When I press ⌘-⇧-P from iTerm I am immediately connected to all my Raspberry Pis at the same time. It’s great for running simultaneous software updates." />
+<link rel="canonical" href="https://smitchell.github.io/how-to-multicast-commands" />
+<meta property="og:url" content="https://smitchell.github.io/how-to-multicast-commands" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-07T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"If you are more Dev than Ops, like me, then you will think this is cool. If you are more Ops than Dev, then you already know how to do this. When I press ⌘-⇧-P from iTerm I am immediately connected to all my Raspberry Pis at the same time. It’s great for running simultaneous software updates.","url":"https://smitchell.github.io/how-to-multicast-commands","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/how-to-multicast-commands"},"headline":"How to Multicast Commands","dateModified":"2020-03-07T00:00:00+00:00","datePublished":"2020-03-07T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header>
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/side-notes'>Side notes</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 4 minutes
+            </p>
+
+            <h1>How to Multicast Commands</h1>
+
+            <p>If you are more Dev than Ops, like me, then you will think this is cool. If you are more Ops than Dev, then you already know how to do this. When I press ⌘-⇧-P from iTerm I am immediately connected to all my Raspberry Pis at the same time. It’s great for running simultaneous software updates.</p>
+
+<h2 id="ta-dah">Ta-Dah!</h2>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/tadah.png" alt="Sign-in with Shortcut" class="center-image" />
+    <figcaption class="image-caption">Sign-in with Shortcut</figcaption>
+</figure>
+
+<p>It just takes three steps to do:</p>
+
+<ol>
+  <li>Add the Raspberry Pis to your Host’s File</li>
+  <li>Use SSH Keys for Authentication</li>
+  <li>Save a terminal session that automatically signs into all of your nodes from a shortcut key.</li>
+</ol>
+
+<h2 id="add-the-raspberry-pis-to-your-hosts-file">Add the Raspberry Pis to your Host’s File</h2>
+
+<p>Add the hostname of all the Raspberry nodes to the /etc/hosts file on your computer.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/hostsfile.png" alt="Add Pis to Hosts File" class="center-image" />
+    <figcaption class="image-caption">Add Pis to Hosts File</figcaption>
+</figure>
+
+<h2 id="use-ssh-keys-for-authentication">Use SSH Keys for Authentication</h2>
+
+<p>Complex passwords are a drag to type over and over. Use SSH keys to authenticate with your Raspberry Pi nodes. You’ll need RSA keys on your laptop. Look in ~/.ssh. If you don’t have one, use ssh-keygen to create one:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh-keygen
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once you have an RSA Key, send it to each Raspberry Pi node with ssh-copy-id.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh-copy-id <span class="nt">-i</span> ~/.ssh/id_rsa.pub  pi@pi1
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>You can now ssh into pi1 without a password. Repeat for each Raspberry Pi node in your cluster.</p>
+
+<h2 id="automatically-sign-in-to-all-the-nodes-at-once">Automatically Sign in to all the Nodes at Once</h2>
+
+<p>This last step takes a bit of work to set up, but it allows you to use a keyboard shortcut in iTerm to open terminals to all of your Raspberry Pi nodes at once. This allows you to automatically sign in to all of them. Next, you can use iTerm’s “Broadcast Input to all Panes” feature to send keystrokes simultaneously to all of the nodes.</p>
+
+<p>Read <a href="https://blog.andrewray.me/how-to-create-custom-iterm2-window-arrangments/">Andrew Ray’s blog post</a> and follow his step-by-step instructions. Here are the screenshots from my setup.</p>
+
+<p>Split your terminal window into panes for all the Raspberry Pi nodes. Then create a separate profile for each host.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/iterm-profile_anotated.png" alt="Create Profile for Each Host" class="center-image" />
+    <figcaption class="image-caption">Create Profile for Each Host</figcaption>
+</figure>
+
+<p>Note how the “Send text at start” field is set to “ssh pi@pi1” to log into the host. Each profile signs into a different host.</p>
+
+<p>Select each terminal pane and create a session. Select the corresponding profile from the list and click the Use Selected Profile button.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/iterm-session.png" alt="Create a Session in each Pane linked to a Profile" class="center-image" />
+    <figcaption class="image-caption">Create a Session in each Pane linked to a Profile</figcaption>
+</figure>
+
+<p>When all of the terminal panes are tied to a session, save the entire window.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/iterm-saveWindows.png" alt="Save all the Panes in the Window" class="center-image" />
+    <figcaption class="image-caption">Save all the Panes in the Window</figcaption>
+</figure>
+
+<p>Finally, add a shortcut to open the window. I chose ⌘-⇧-P (for Pi).</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/iterm-shortcut.png" alt="Add Keyboard Shortcut to Launch Window" class="center-image" />
+    <figcaption class="image-caption">Add Keyboard Shortcut to Launch Window</figcaption>
+</figure>
+
+<p>Now, when I open iTerm and press, ⌘-⇧-P, iTerm opens a window with six sessions, each automatically connected to each Raspberry Pi.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/tadah.png" alt="Sign-in with Shortcut" class="center-image" />
+    <figcaption class="image-caption">Sign-in with Shortcut</figcaption>
+</figure>
+
+<p>To simultaneous type in all six terminal windows, use iTerm’s Broadcast feature.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-multicast-commands/iterm-broadcast.png" alt="How to Broadcast Keystrokes to all Raspberry Pis" class="center-image" />
+    <figcaption class="image-caption">How to Broadcast Keystrokes to all Raspberry Pis</figcaption>
+</figure>
+
+<p>That’s it. These three things will make working with your Raspberry Pi cluster so much more enjoyable.</p>
+
+<hr />
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://pimylifeup.com/raspberry-pi-ssh-keys/">https://pimylifeup.com/raspberry-pi-ssh-keys<a></a></a></li>
+  <li><a href="https://blog.andrewray.me/how-to-create-custom-iterm2-window-arrangments/">https://blog.andrewray.me/how-to-create-custom-iterm2-window-arrangments<a></a></a></li>
+</ul>
+
+
+
+            
+            
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/how-to-multicast-commands';
+        this.page.identifier = 'https://smitchell.github.io/how-to-multicast-commands';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | Running Kubernetes on a Raspberry Pi Cluster</title>
+    <meta name="description" content="I loved trains as a boy, which may explain why I am running Kubernetes on Raspberry Pis for my home lab instead of in the cloud. Think of it like model railr...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/running-kubernetes-on-rpi">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="Running Kubernetes on a Raspberry Pi Cluster" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/running-kubernetes-on-rpi" property="og:url">
+    
+    
+    <meta content="2020-11-22T14:42:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="kubernetes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="Running Kubernetes on a Raspberry Pi Cluster">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/running-kubernetes-on-rpi">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Running Kubernetes on a Raspberry Pi Cluster | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Running Kubernetes on a Raspberry Pi Cluster" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I loved trains as a boy, which may explain why I am running Kubernetes on Raspberry Pis for my home lab instead of in the cloud. Think of it like model railroading for computer geeks! In my earlier post, How to Configure Raspbian Linux, we installed and configured Raspbian Linux on all the Raspberry Pis. Now it’s time to add Kubernetes." />
+<meta property="og:description" content="I loved trains as a boy, which may explain why I am running Kubernetes on Raspberry Pis for my home lab instead of in the cloud. Think of it like model railroading for computer geeks! In my earlier post, How to Configure Raspbian Linux, we installed and configured Raspbian Linux on all the Raspberry Pis. Now it’s time to add Kubernetes." />
+<link rel="canonical" href="https://smitchell.github.io/running-kubernetes-on-rpi" />
+<meta property="og:url" content="https://smitchell.github.io/running-kubernetes-on-rpi" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-22T14:42:00+00:00" />
+<script type="application/ld+json">
+{"description":"I loved trains as a boy, which may explain why I am running Kubernetes on Raspberry Pis for my home lab instead of in the cloud. Think of it like model railroading for computer geeks! In my earlier post, How to Configure Raspbian Linux, we installed and configured Raspbian Linux on all the Raspberry Pis. Now it’s time to add Kubernetes.","url":"https://smitchell.github.io/running-kubernetes-on-rpi","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/running-kubernetes-on-rpi"},"headline":"Running Kubernetes on a Raspberry Pi Cluster","dateModified":"2020-11-22T14:42:00+00:00","datePublished":"2020-11-22T14:42:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-kubernetes.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 5 minutes
+            </p>
+
+            <h1>Running Kubernetes on a Raspberry Pi Cluster</h1>
+
+            <p>I loved trains as a boy, which may explain why I am running Kubernetes on Raspberry Pis for my home lab instead of in the cloud. Think of it like model railroading for computer geeks! In my earlier post, <a href="https://smitchell.github.io/how-to-configure-raspbian-linux">How to Configure Raspbian Linux</a>, we installed and configured Raspbian Linux on all the Raspberry Pis. Now it’s time to add Kubernetes.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-22-k8s-on-rpi/locomotives.png" alt="Kubernetes and Raspbian Locomotives" class="center-image" />
+    <figcaption class="image-caption">Kubernetes and Raspbian Locomotives</figcaption>
+</figure>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Read how I made the switch from 32-bit Raspbian to 64-bit Ubuntu Server 20.10 to improve Docker image compatibility. <a href="/running-ubuntu-on-rpi">Jump to Ubuntu Post.</a></div>
+
+<h1 id="choosing-a-kubernetes-distribution">Choosing a Kubernetes Distribution</h1>
+<p>You have choices when it comes to a Kubernetes distribution for your Raspberry Pis. Here are just a few.</p>
+
+<ul>
+  <li>Canonical Micro8s</li>
+  <li>Minimal Kubernetes via kubeadm</li>
+  <li>Rancher Labs K3s</li>
+</ul>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-22-k8s-on-rpi/k3s.png" alt="Rancher Labs k3s" class="center-image" />
+    <figcaption class="image-caption">Rancher Labs k3s</figcaption>
+</figure>
+
+<p>I selected Rancher for its popularity in the Raspberry Pi community. K3s is a highly available, certified Kubernetes distribution, yet the k3s binary is less than 40MB. The sweet spot for k3s is IoT (Internet of Things) and Edge devices. For instance, many national retailers put k3s in every store to run point-of-sale and other operational systems. Most importantly for our Raspberry Pi cluster is that K3S works great on ARM processors!</p>
+
+<p>One of the differences in k3s is that Rancher replaced the etcd Kubernetes database with SQLite, allowing packaging of k3s as a single binary. It also allows you to run in HA (high availability) mode with a single master node using an external SQLite database cluster. K8s can’t do that. You can also achieve HA with multiple k3s master nodes, the same as k8s.</p>
+
+<h2 id="installing-k3s">Installing K3s</h2>
+
+<p>If you decide to install k3s on your own Raspberry Pi’s, follow these tips that walk you through the process.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> K3s installation instructions for the Raspberry Pi. <a href="/sidenote-k8s-on-raspbian">Jump to article</a></div>
+
+<h2 id="installing-a-kubernetes-dashboard">Installing a Kubernetes Dashboard</h2>
+<p>Kubernetes includes a dashboard, but you have options if you want something different.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Learn about different Kubernetes dashboards and how to install them. <a href="/sidenote-dashboards">Jump to article</a></div>
+
+<h2 id="centralized-logging">Centralized Logging</h2>
+<p>Things can go wrong with your Raspberry Pi nodes. Trust me; I have some first-hand experience; that is why I set up my cluster to send the logs off-node, enabling me to examine them separately if the node goes down.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Centralized logging instructions for the Raspberry Pi. <a href="/sidenote-centralized-logging">Jump to article</a></div>
+
+<p>If you installed Rander k3s, use the “kill all” command to drain your nodes before shutting down. While writing this post the batteries in my UPS went bad it began blaring its alarm. I issued the “kill all” to all the worker nodes and shut them down, then I did the same on the primary node. After removing the failing UPS power supply I powered the cluster back on and everything started normally.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>/usr/local/bin/k3s-killall.sh
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>That’s it for now. In my next post, I will begin deploying a workload to my new cluster.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <a href="https://www.alexellis.io/">Alex Ellis</a> has an excellent post about installing Rancher Labs K3s on your Raspberry Pi cluster called <a href="https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/">Will it cluster? k3s on your Raspberry Pi</a>.</div>
+
+<p>Before I sign off, here is a peek at my current eight-node cluster as of Thanksgiving, 2020:</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-22-k8s-on-rpi/cluster.png" alt="Raspberry Pi Cluster" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Cluster</figcaption>
+</figure>
+
+<hr />
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://blog.gruntwork.io/gracefully-shutting-down-pods-in-a-kubernetes-cluster-328aecec90d">Gracefully Shutting Down Pods in a Kubernetes Cluster</a></li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/running-kubernetes-on-rpi';
+        this.page.identifier = 'https://smitchell.github.io/running-kubernetes-on-rpi';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Nov 22, 2020</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Kubernetes</a>
+                            ,
+                        </li>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Raspberry</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

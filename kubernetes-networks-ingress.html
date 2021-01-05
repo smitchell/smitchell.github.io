@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | Kubernetes Networks and Ingress</title>
+    <meta name="description" content="I assembled a Raspberry Pi cluster previously in this series, installed Ubuntu Groovy Gorilla, and installed Rancher k3s Kubernetes. It’s close to running in...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/kubernetes-networks-ingress">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="Kubernetes Networks and Ingress" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/kubernetes-networks-ingress" property="og:url">
+    
+    
+    <meta content="2020-12-09T14:28:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="kubernetes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="Kubernetes Networks and Ingress">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/kubernetes-networks-ingress">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Kubernetes Networks and Ingress | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Kubernetes Networks and Ingress" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I assembled a Raspberry Pi cluster previously in this series, installed Ubuntu Groovy Gorilla, and installed Rancher k3s Kubernetes. It’s close to running interesting workloads, but first, it needs ingress and storage volumes. Ingress is not difficult, but this being a learning lab, let’s sharpen our understanding of Kubernetes networking." />
+<meta property="og:description" content="I assembled a Raspberry Pi cluster previously in this series, installed Ubuntu Groovy Gorilla, and installed Rancher k3s Kubernetes. It’s close to running interesting workloads, but first, it needs ingress and storage volumes. Ingress is not difficult, but this being a learning lab, let’s sharpen our understanding of Kubernetes networking." />
+<link rel="canonical" href="https://smitchell.github.io/kubernetes-networks-ingress" />
+<meta property="og:url" content="https://smitchell.github.io/kubernetes-networks-ingress" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-09T14:28:00+00:00" />
+<script type="application/ld+json">
+{"description":"I assembled a Raspberry Pi cluster previously in this series, installed Ubuntu Groovy Gorilla, and installed Rancher k3s Kubernetes. It’s close to running interesting workloads, but first, it needs ingress and storage volumes. Ingress is not difficult, but this being a learning lab, let’s sharpen our understanding of Kubernetes networking.","url":"https://smitchell.github.io/kubernetes-networks-ingress","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/kubernetes-networks-ingress"},"headline":"Kubernetes Networks and Ingress","dateModified":"2020-12-09T14:28:00+00:00","datePublished":"2020-12-09T14:28:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-kubernetes.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 5 minutes
+            </p>
+
+            <h1>Kubernetes Networks and Ingress</h1>
+
+            <p>I <a href="/some-assembly-required">assembled a Raspberry Pi cluster</a> previously in this series, <a href="/running-ubuntu-on-rpi">installed Ubuntu Groovy Gorilla</a>, and <a href="/running-kubernetes-on-rpi">installed Rancher k3s Kubernetes</a>. It’s close to running interesting workloads, but first, it needs ingress and storage volumes. Ingress is not difficult, but this being a learning lab, let’s sharpen our understanding of Kubernetes networking.</p>
+
+<h1 id="basic-kubernetes-network-concepts">Basic Kubernetes Network Concepts</h1>
+
+<p>This diagram from the <a href="https://k3s.io/">Rancher K3s web site</a> shows the core components of Rancher K3s Kubernetes.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-12-9-ingress-controller/k3s-diagram.png" alt="Rancher k3s Components" class="center-image" />
+    <figcaption class="image-caption">Rancher k3s Components</figcaption>
+</figure>
+
+<p>It shows a network Tunnel Proxy connecting the nodes and the Kube Proxy, which we <a href="/sidenote-dashboards">used to connect to the Kubernetes Dashboard</a> in an earlier post. You also see <a href="https://github.com/coreos/flannel">Flannel</a>, containers, and pods. These need further exploration.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-12-9-ingress-controller/matryoshka_dolls.png" alt="Kubernetes Matryoshka Dolls" class="center-image" />
+    <figcaption class="image-caption">Kubernetes Matryoshka Dolls</figcaption>
+</figure>
+
+<p>If you run in the cloud or on a virtual machine, you have even more layers than what is shown above. In my case, the host is a Raspberry Pi running a Kubernetes worker node. The worker node runs the Flannel daemon to supply the overlay network, and the container runtime, <a href="https://containerd.io/">containerd</a>. Flannel and containerd provide the foundation for running pods. Each pod includes one or more containers for applications.</p>
+
+<p>The Kubernetes specification includes network requirements but allows flexibility in the implementation. Some core network tenants are these:</p>
+<ul>
+  <li>Pods on a node can communicate with all pods on all nodes without NAT.</li>
+  <li>Agents on a node can communicate with all pods on that node.</li>
+  <li>Pods in the host network of a node can communicate with all pods on all nodes without NAT.</li>
+</ul>
+
+<p>Rancher k3s Kubernetes uses Flannel, by <a href="https://coreos.com/">CoreOS</a>, for its CNI (Container Network Interface), but many other CNIs exist. See Rancher’s article <a href="https://rancher.com/blog/2019/2019-03-21-comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave">Comparing Kubernetes CNI Providers: Flannel, Calico, Canal, and Weave</a>.</p>
+
+<p>Take a closer look at the network.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-12-9-ingress-controller/Flannel_Overlay.png" alt="Flannel Overlay Network" class="center-image" />
+    <figcaption class="image-caption">Flannel Overlay Network</figcaption>
+</figure>
+
+<p>The DHCP IP addresses on my home network start at 192.168.1.100, leaving IP addresses 192.168.1.2 through 192.168.1.99 available for static IP addresses. The figure above depicts two IPs from my range of static IPs assigned to Raspberry Pis, 192.168.1.10 and 192.168.1.20.</p>
+
+<h2 id="flannel">Flannel</h2>
+
+<p>Flannel is a layer-3 network fabric designed for Kubernetes. It configures an extensive internal overlay network that spans across every node within the cluster. In the illustration above, Flannel assigned my two Raspberry Pis node ranges of 10.42.1.0/16 and 10.42.2.0/16, respectively. The container runtime on the left allocated IP addresses 10.42.1.2 and 10.42.1.3 to its pods. On the right, the container runtime assigned the IP addresses 10.42.2.2 and 10.42.2.3.</p>
+
+<p>The arrow between pods 10.42.1.3 and 10.42.2.2 represents traffic between nodes over the Tunnel Proxy. Of course, pods on the same node can send network traffic to each other, but since pods are ephemeral, keeping track of the pod addresses is problematic. That is where services come into play.</p>
+
+<h1 id="services">Services</h1>
+<p>Service is an abstraction for a set of pods. Services insulate the service clients from the details of where pods run.</p>
+
+<h2 id="service-types">Service Types</h2>
+<p>The four service types are cluster IP, external name, node port, and load balancer.</p>
+
+<h3 id="cluster-ip">Cluster IP</h3>
+<p>A cluster IP service is the default Kubernetes service type. It allows other apps in the cluster to communicate with the service but does not allow direct external traffic. However, indirect external traffic is possible through ingress routing rules.</p>
+
+<h3 id="node-port">Node Port</h3>
+<p>A node port service is the most direct route to allow traffic into a cluster. The Kubernetes control panel allocates a port to the service, which is proxied by Kube Proxy on all the nodes, thus directing traffic to the service port no matter at which node the traffic arrives. By default, Kubernetes assigns the service a port number between 30,000 and 32,767.</p>
+
+<h3 id="external-name">External Name</h3>
+<p>The external name type allows you to access services that are not running in your cluster, acting as if they are running in your cluster. It maps the service to the contents of the “externalName” field (e.g. foo.bar.example.com). It has no proxying of any kind.</p>
+
+<h3 id="load-balancer">Load Balancer</h3>
+<p>Load balancer services use an external load balance provided by a cloud provider. A bare-metal Kubernetes cluster can use the load balancer service type with <a href="https://metallb.universe.tf/">MetalLB</a>, a product built to offer external load balancing to Kubernetes not hosted on a cloud provider.</p>
+
+<h2 id="kube-proxy">Kube Proxy</h2>
+<p>Kube Proxy is a network proxy that runs on every node of the Kubernetes cluster. It maintains the network rules for the nodes, allowing network communication with the pods. Kube Proxy has many options for routing traffic to pods in a replica set, like round-robin, beyond this post’s scope.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-12-9-ingress-controller/service_proxy.png" alt="Services and KubeProxy" class="center-image" />
+    <figcaption class="image-caption">Services and KubeProxy</figcaption>
+</figure>
+
+<p>The illustration above depicts a cluster IP service called by one or more client applications in the cluster. It also has an ingress routing rule allowing an external API Gateway to reach the service’s backend pods.</p>
+
+<h1 id="ingress-controller">Ingress Controller</h1>
+<p>Now that we have our network homework out of the way, rather than include an exhaustive tutorial in this post, there are two side notes linked below: one for enabling the Traefik Dashboard and one on exposing a cluster IP service with an ingress rule.</p>
+
+<p>As mentioned at the start of this post, the ingress setup is straightforward:</p>
+
+<ol>
+  <li>Create an application deployment (the side note deploys the Nginx Docker image).</li>
+  <li>Create a service (the side note uses the cluster IP service type, but it could be service type node port)</li>
+  <li>Create an ingress routing rule. (The side note uses the deployment from the k3s GitHub guide)</li>
+</ol>
+
+<p>Here are the step-by-step guides, if you are interested.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b>  Learn how to enable the Traefik Dashboard: <a href="/sidenote-run-traefik-dashboard">Jump to the article</a>.</div>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Learn how to expose a service with the Traefik ingress controller:  <a href="sidenote-expose-traefik-ingress">Jump to the article</a>.</div>
+
+<p>Stay tuned for the next post about persistent Kubernetes storage on my Raspberry Pi NAS using a 1 TB Samsung EVO SATA M.2.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-12-9-ingress-controller/preview_nas.png" alt="Raspberry Pi NAS" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi NAS</figcaption>
+</figure>
+
+<hr />
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</a></li>
+  <li><a href="https://doc.traefik.io/traefik/providers/kubernetes-ingress/">Kubernetes Ingress - Traefik</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/">Connecting Applications with Services</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">Cluster Networking</a></li>
+  <li><a href="https://github.com/coreos/flannel">Flannel is a network fabric for containers, designed for Kubernetes</a></li>
+  <li><a href="https://github.com/rancher/k3d/blob/main/docs/usage/guides/exposing_services.md">k3d/exposing_services.md at main · rancher/k3d · GitHub</a></li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/kubernetes-networks-ingress';
+        this.page.identifier = 'https://smitchell.github.io/kubernetes-networks-ingress';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Dec 9, 2020</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Kubernetes</a>
+                            ,
+                        </li>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Raspberry</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

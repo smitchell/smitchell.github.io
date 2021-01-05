@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | DS/OS on Google Cloud Platform</title>
+    <meta name="description" content="        ">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/dcos-on-gcp">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="DS/OS on Google Cloud Platform" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/dcos-on-gcp" property="og:url">
+    
+    
+    <meta content="2016-12-12T14:17:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="architecture" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="DS/OS on Google Cloud Platform">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/dcos-on-gcp">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>DS/OS on Google Cloud Platform | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="DS/OS on Google Cloud Platform" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cloud-native Topics is a journey into making tech learning fun." />
+<meta property="og:description" content="Cloud-native Topics is a journey into making tech learning fun." />
+<link rel="canonical" href="https://smitchell.github.io/dcos-on-gcp" />
+<meta property="og:url" content="https://smitchell.github.io/dcos-on-gcp" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-12T14:17:00+00:00" />
+<script type="application/ld+json">
+{"description":"Cloud-native Topics is a journey into making tech learning fun.","url":"https://smitchell.github.io/dcos-on-gcp","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/dcos-on-gcp"},"headline":"DS/OS on Google Cloud Platform","dateModified":"2016-12-12T14:17:00+00:00","datePublished":"2016-12-12T14:17:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-spring.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/architecture'>Architecture</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 15 minutes
+            </p>
+
+            <h1>DS/OS on Google Cloud Platform</h1>
+
+            <figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/dcos_gcp.png" alt="" class="center-image" />
+    <figcaption class="image-caption"></figcaption>
+</figure>
+
+<p>My <a href="https://exploringspatial.wordpress.com/2016/12/11/collaborating-on-google-cloud-platform/">previous post</a> discussed setting up your Google Cloud Platform account to run DC/OS. Now we move on to installing DC/OS. Before starting, if you are new to DC/OS, take a moment to familiarize yourself with <a href="https://docs.mesosphere.com/1.8/overview/concepts/">DC/OS concepts</a>. Also, look at <a href="https://mesosphere.com/blog/2016/04/20/mesosphere-guide-getting-started-dcos/">The Mesosphere guide to getting started with DC/OS</a> written about setting up DC/OS on AWS. Even though those instructions use shell scripts to generate the nodes, and the Google Cloud Platform project uses Ansible scripts, the concepts are the same.</p>
+
+<h1 id="create-the-dcos-bootstrap-machine">Create the DC/OS Bootstrap Machine</h1>
+<p>The bootstrap machine is where <a href="https://dcos.io/">DC/OS</a> install artifacts are configured, built, and distributed. The instructions for Google Cloud Platform rely on Ansible scripts from a <a href="https://github.com/dcos-labs/dcos-gce">dcos-labs project on GitHub</a>. At the time of this writing, the GCE set-up page in the DC/OS 1.8 Administrative guide was a little out of sync with the project README file, so I followed the <a href="https://github.com/dcos-labs/dcos-gce/blob/master/README.md">GitHub README</a> file instead.
+Start from the Google Cloud Platform dashboard. Make sure the Google Cloud Platform project that you created for DC/OS is selected. Click the “hamburger” menu icon in the upper left corner of the page and then choose Compute Engine from the menu. You need an “n1-standard-1” instance running Centos 7 with a 10 GB disk. Follow the README instructions carefully on how to configure this new VM instance.</p>
+
+<h1 id="connecting-to-the-dcos-bootstrap-instance">Connecting to the DC/OS Bootstrap Instance</h1>
+<p>Once the DC/OS bootstrap instance starts, it will appear on the GCE VM Instance page with a green checkmark to the left of its name. To connect to the machine, either download the <a href="https://cloud.google.com/sdk/">Cloud SDK</a> to your desktop computer or activate <a href="https://cloud.google.com/shell/docs/starting-cloud-shell">Google Cloud Shell</a> from the &gt;_  icon toward the right side of the page header.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/shell_icon.png" alt="Shell Icon on GCP Page Header" class="center-image" />
+    <figcaption class="image-caption">Shell Icon on GCP Page Header</figcaption>
+</figure>
+
+<p>Cloud SDK runs in an f1-micro Google Compute Engine and displays a command prompt at the bottom of the page. Open the SSH drop-down list to the right of the bootstrap instance and pick View vcloud command. When the dialog opens, select RUN IN CLOUD SHELL (or use one of the other options to ssh into the bootstrap instance).</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/runinshell.png" alt="RUN IN CLOUD SHELL Link" class="center-image" />
+    <figcaption class="image-caption">RUN IN CLOUD SHELL Link</figcaption>
+</figure>
+
+<p>After connecting to the DC/OS Bootstrap instance, follow the instructions in the README file until you reach the “hosts” file…
+Ensure the IP address for master0 in ./hosts is the next consecutive IP from bootstrap_public_ip.</p>
+<h1 id="defining-the-master-nodes">Defining the Master Node(s)</h1>
+<p>The number of master nodes is permanent, so if you change your mind, you must reinstall the cluster. It takes a quorum to determine its leader, so choose an odd number of nodes to avoid a “split-brain” situation.
+It is common to use three master nodes; however, GCP only allows eight CPUs if you are using the Google Cloud Platform free trial. I tested with a single 2-CPU master node, two 2-CPU private agent nodes, and one 2-CPU public agent node.
+The “hosts” file defines the number of master nodes in the DC/OS cluster. The master nodes’ IP addresses should be contiguous addresses from the IP address of the bootstrap machine. Here is an example of a three-node cluster.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="o">[</span>masters]
+master0 <span class="nv">ip</span><span class="o">=</span>10.128.0.3
+master1 <span class="nv">ip</span><span class="o">=</span>10.128.0.4
+master2 <span class="nv">ip</span><span class="o">=</span>10.128.0.5
+ 
+<span class="o">[</span>agents]
+agent[0000:9999]
+ 
+<span class="o">[</span>bootstrap]
+bootstrap
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="defining-the-agent-nodes">Defining the Agent Nodes</h1>
+<p>The README file says:</p>
+
+<blockquote>
+  <p>Please make appropriate changes to dcos_gce/group_vars/all. You need to review project, subnet, login_name, bootstrap_public_ip &amp; zone</p>
+</blockquote>
+
+<p>See the bottom of the README file for a full explanation of the variables. At a minimum, you must set the following variables in the “./group_vars/all” file.</p>
+
+<ol>
+  <li>Project</li>
+  <li>Login name</li>
+  <li>Bootstrap public IP</li>
+  <li>Zone</li>
+</ol>
+
+<p>You may also want to tweak the master and agent nodes’ template settings, but it is not required. I changed the “gcloudimage” property to match the Centos 7 image that I found in the Compute Engine –&gt; Image listing.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/centos7.png" alt="CentOS 7 Compute Engine" class="center-image" />
+    <figcaption class="image-caption">CentOS 7 Compute Engine</figcaption>
+</figure>
+
+<h1 id="install-the-dcos-cluster">Install the DC/OS Cluster</h1>
+<p>You are now ready to install the DC/OS cluster using the Ansible script.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ansible-playbook <span class="nt">-i</span> hosts install.yml
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>You’ll see some error messages as it attempts to shut down instances that don’t yet exist, and then it will begin creating and configuring the new instance(s). When the script completes, the new instance(s) will appear in the Compute Engine VM Instance list.</p>
+
+<h1 id="install-the-private-agent-nodes">Install the Private Agent Nodes</h1>
+<p>As previously mentioned, I created two private nodes with the following command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>ansible-playbook <span class="nt">-i</span> hosts add_agents.yml <span class="se">\</span>
+<span class="nt">--extra-vars</span> <span class="s2">"start_id=0001 end_id=0002 agent_type=private"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="install-the-public-agent-nodes">Install the Public Agent Nodes</h1>
+<p>If you are using the free trial, things get a little tricky here. Your public agent node creation will fail because it puts you over the CPU quota. To get around that limitation, I stopped agent0002 first, and then I created the public node. After making the public node, I shut down the bootstrap machine to free-up one CPU, and then I restarted agent0002. Here is the command that I used.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>ansible-playbook <span class="nt">-i</span> hosts add_agents.yml <span class="se">\</span>
+<span class="nt">--extra-vars</span> <span class="s2">"start_id=0003 end_id=0003 agent_type=public"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once the public node is running, edit the instance configuration from the GCE VM Instance page and check the https option (temporarily do the same for the master0 instance).</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/https.png" alt="Allow https Traffic" class="center-image" />
+    <figcaption class="image-caption">Allow https Traffic</figcaption>
+</figure>
+
+<h1 id="open-the-dcos-console">Open the DC/OS Console</h1>
+<p>Now we are ready to launch the DC/OS console. Eventually, we will do this with a virtual host pointed at the Marathon load balancer running on the public agent node, but for now, we will open the DC/OS dashboard directly from the master node.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/directshot.png" alt="Open Compute Engine in Web browser" class="center-image" />
+    <figcaption class="image-caption">Open Compute Engine in Web browser</figcaption>
+</figure>
+
+<p>After signing in with the Google account that you used for Google Compute Cloud, you will see something like this.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/console.png" alt="Marathon Dashboard" class="center-image" />
+    <figcaption class="image-caption">Marathon Dashboard</figcaption>
+</figure>
+
+<h1 id="installing-the-marathon-load-balancer">Installing the Marathon Load Balancer</h1>
+<p>To try it out, let’s install the Marathon Load Balancer on the public agent node. Select Services from the left side menu, click Deploy Service, and then click the link that says install from Universe. When the page opens, search for “marathon.” The search results should look something like this.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/install_marathon-lb.png" alt="Marathon Package Explorer" class="center-image" />
+    <figcaption class="image-caption">Marathon Package Explorer</figcaption>
+</figure>
+
+<p>Click Install on the marathon-lb row. When the dialog opens, click Install Package.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/marathon-lb.png" alt="Install Marathon Load Balancer" class="center-image" />
+    <figcaption class="image-caption">Install Marathon Load Balancer</figcaption>
+</figure>
+
+<p>Return to the Services page, and in a moment, you should see this.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/dcos-on-gcp/installed.png" alt="Running Marathon Load Balancer" class="center-image" />
+    <figcaption class="image-caption">Running Marathon Load Balancer</figcaption>
+</figure>
+
+<p>You are now ready to begin using DC/OS cluster.</p>
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/dcos-on-gcp';
+        this.page.identifier = 'https://smitchell.github.io/dcos-on-gcp';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Dec 12, 2016</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/architecture'>Architecture</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/architecture'>Architecture</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

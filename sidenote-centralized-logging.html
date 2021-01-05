@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | How to Centralize Logs</title>
+    <meta name="description" content="Whoops, I did it again! I lost access to my primary node, but I don’t know why because the logs aren’t accessible. I need centralize logging outside of the c...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/sidenote-centralized-logging">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="How to Centralize Logs" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/sidenote-centralized-logging" property="og:url">
+    
+    
+    <meta content="2020-11-22T00:00:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="side-notes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="How to Centralize Logs">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/sidenote-centralized-logging">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Centralize Logs | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Centralize Logs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Whoops, I did it again! I lost access to my primary node, but I don’t know why because the logs aren’t accessible. I need centralize logging outside of the cluster." />
+<meta property="og:description" content="Whoops, I did it again! I lost access to my primary node, but I don’t know why because the logs aren’t accessible. I need centralize logging outside of the cluster." />
+<link rel="canonical" href="https://smitchell.github.io/sidenote-centralized-logging" />
+<meta property="og:url" content="https://smitchell.github.io/sidenote-centralized-logging" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-22T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Whoops, I did it again! I lost access to my primary node, but I don’t know why because the logs aren’t accessible. I need centralize logging outside of the cluster.","url":"https://smitchell.github.io/sidenote-centralized-logging","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/sidenote-centralized-logging"},"headline":"How to Centralize Logs","dateModified":"2020-11-22T00:00:00+00:00","datePublished":"2020-11-22T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header>
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/side-notes'>Side notes</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 5 minutes
+            </p>
+
+            <h1>How to Centralize Logs</h1>
+
+            <p>Whoops, I did it again! I lost access to my primary node, but I don’t know why because the logs aren’t accessible. I need centralize logging outside of the cluster.</p>
+
+<p>What OS are you using, AMD32 Raspbian or AMD64 Ubuntu? I was not able to get cloud logging working on 32-bit Raspbian, but it worked fine with 64-bit Ubuntu!</p>
+
+<p>This post covers two options:</p>
+<ol>
+  <li>Cloud logging for AMD64 Ubuntu.</li>
+  <li>Rsyslog logging for AMD32 Rasbian</li>
+</ol>
+
+<h1 id="cloud-logging-for-amd64-ubuntu">Cloud Logging for AMD64 Ubuntu</h1>
+<p>With Ubuntu installed, cloud logging becomes a practical option because most logging agents have a build for AMD64.</p>
+<h2 id="solarwinds-loggly">Solarwinds Loggly</h2>
+<p>Loggly works perfectly on AMD32 Raspbiean or AMD64 Ubuntu. I chose not to continue with it because the least expensive month-to-month subscription is $99/month.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/loggly.png" alt="SolarWinds Loggly Dashboard" class="center-image" />
+    <figcaption class="image-caption">SolarWinds Loggly Dashboard</figcaption>
+</figure>
+
+<h2 id="google-cloud-platform-logging">Google Cloud Platform Logging</h2>
+<p>You can send on-premise logs to GCP using Fluentd, and it is possible to run Fuentd on a 32-bit Raspbian, but I was unable to send logs to GCP with 32-bit Fluentd. This article is an example of sending 32-bit Raspbian logs to Treasure Data, a very pricy service:  <a href="https://docs.fluentd.org/v/0.12/articles/raspberrypi-cloud-data-logger">Raspberry Pi Cloud Data Logger</a>. Nevertheless, I couldn’t get it to work with GCP on 32-bit Raspbian. I’ve used GCP logging at work in the past, and it works well, but this time I decided to try AWS.</p>
+
+<h2 id="centralized-logging-with-aws-cloudwatch">Centralized Logging with AWS CloudWatch</h2>
+<p>AWS CloudWatch is easy to set up on the server-side. There is a 32-bit compatible agent, too, collectd, that sends metrics to CloudWatch. The collectd agent is from AWSLabs and is written in Python, making it portable to 32-bit Raspbian.</p>
+
+<p>Unfortunately, the only CloudWatch Logging Agent ARM package for Debian is for AMD64. Raspbian is armhf, so the agent doesn’t work with 32-bit Raspbian. Fortunately, it does work with AMD64 Ubuntu which I just installed!</p>
+
+<h3 id="installing-the-cloudwatch-agent-on-on-premises-servers">Installing the CloudWatch Agent on On-Premises Servers</h3>
+
+<p>Follow the <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-premise.html">AWS CloudWatch instructions for on-premise servers</a>. I chose to use <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html">IAM Roles and Users with the CloudAgent</a>.</p>
+
+<h3 id="create-a-cloudwatch-agent-user">Create a CloudWatch Agent user.</h3>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/CloudWatchAgentUser.png" alt="Creating a CloudWatch IAM User" class="center-image" />
+    <figcaption class="image-caption">Creating a CloudWatch IAM User</figcaption>
+</figure>
+
+<h3 id="assign-the-cloudwatch-log-policy">Assign the CloudWatch Log policy</h3>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/CloudWatch-Agent-Policy.png" alt="Assigning the CloudWatch IAM User Policy" class="center-image" />
+    <figcaption class="image-caption">Assigning the CloudWatch IAM User Policy</figcaption>
+</figure>
+
+<h3 id="install-the-aws-cli">Install the AWS CLI</h3>
+
+<p>Install the AWS CLI on all the nodes to run the CloudWatch Agent. I used the iTerm broadcast feature to update all my nodes at once.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt <span class="nb">install </span>awscli <span class="nt">-y</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Check the version to verify the installation.</p>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/verify-aws.png" alt="Verify AWS CLI" class="center-image" />
+    <figcaption class="image-caption">Verify AWS CLI</figcaption>
+</figure>
+
+<h3 id="configure-the-aws-cli">Configure the AWS CLI</h3>
+<p>After multiple attempts, and a lot of frustration, I switched to the root user, “sudo bash,” to get CloudWatch to work. Long story short, “aws configure” creates the file /home/ubuntu/.aws/credentials, but try as I might, I could not prevent the CloudWatch agent from looking for the credentials in /root/.aws/credentials. Finally, I gave up and started over, using “sudo bash.”</p>
+
+<p>Run the configure command to create the .awd/credentials file using the CloudWatch user created above.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>aws configure
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/configure.png" alt="Configure AWS" class="center-image" />
+    <figcaption class="image-caption">Configure AWS</figcaption>
+</figure>
+
+<h3 id="install-the-cloudwatch-agent">Install the CloudWatch Agent</h3>
+<p>Download and install the CloudWatch agent for your operating system: <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/download-cloudwatch-agent-commandline.html">Cloud Watch Agent Downloads</a>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/arm64/latest/amazon-cloudwatch-agent.deb
+<span class="nb">sudo </span>dpkg <span class="nt">-i</span> <span class="nt">-E</span> ./amazon-cloudwatch-agent.deb
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/CloudWatchAgent.png" alt="Install the CloudWatch Agent" class="center-image" />
+    <figcaption class="image-caption">Install the CloudWatch Agent</figcaption>
+</figure>
+
+<p>Create a file named AmazonCloudWatchAgent with the CloudWatch agent credentials. Again, I used the iTerm broadcast feature to update all my nodes at once.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nb">cat</span> <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh"> &gt; AmazonCloudWatchAgent
+[profile AmazonCloudWatchAgent]
+aws_access_key_id=*******************
+aws_secret_access_key=**************************************
+region = us-west-2
+</span><span class="no">EOF
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Pass the agent configuration to the AWS CLI.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>aws configure <span class="nt">--profile</span> AmazonCloudWatchAgent
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Technically, this step probably isn’t necessary. The Ubuntu Groovy Gorilla OS for the Raspberry Pi installs AWS CLI version 1, and I think the Profiles feature (e.g. “AmazonCloudWatchAgent”), is only supported in AWS CLI version 2.</p>
+
+<h3 id="install-collectd-optional">Install Collectd (optional)</h3>
+
+<p>If you want to send Collectd metrics install it.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nb">install </span>collectd
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="run-the-cloudwatch-wizard">Run the CloudWatch Wizard</h3>
+
+<p>Use <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html">the CloudWatch Wizard</a> to generate a configuration file. It is generated at /opt/aws/amazon-cloudwatch-agent/bin/config.json.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo</span> /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Have a look at <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html">Amazon’s CloudWatch Config Wizard documentation</a> for the details. I generated multiple configurations until I had what I wanted. In my home-lab YAML repository is a copy of <a href="https://raw.githubusercontent.com/smitchell/homelab_yaml/main/cloudWatch/config.json">my current CloudWatch config file</a>. It will evolve over time. I’m just experimenting now.</p>
+
+<h3 id="start-the-cloudwatch-agent">Start the CloudWatch Agent</h3>
+
+<p>Launch the CloudWatch agent. As noted above, I was only able to get this to work from “sudo bash.”</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl <span class="nt">-a</span> fetch-config <span class="nt">-m</span> onPremise <span class="nt">-s</span> <span class="nt">-c</span> file:/opt/aws/amazon-cloudwatch-agent/bin/config.json
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/StartCloudWatchAgent.png" alt="Start the CloudWatch agent" class="center-image" />
+    <figcaption class="image-caption">Start the CloudWatch agent</figcaption>
+</figure>
+
+<p>Congratulations! The CloudWatch agent is running. In a few minutes, you will start receiving logs on AWS CloudWatch.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/cloudwatch.png" alt="CloudWatch Dashboard" class="center-image" />
+    <figcaption class="image-caption">CloudWatch Dashboard</figcaption>
+</figure>
+
+<h1 id="rsyslog-for-amd32-raspbian">Rsyslog for AMD32 Raspbian</h1>
+<p>If you are running 32-bit Rasbian, centralized cloud logging isn’t in the cards for you. The next best thing is rsyslog to a server outside of the cluster.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/rsyslog_flow.png" alt="Centralized Logs with rsyslog" class="center-image" />
+    <figcaption class="image-caption">Centralized Logs with rsyslog</figcaption>
+</figure>
+
+<p>Here is the blog that I followed to configure Rsyslog: <a href="https://computingforgeeks.com/how-to-configure-rsyslog-centralized-log-server-on-ubuntu-18-04-lts/">How to Configure Rsyslog Centralized Log Server on Ubuntu 18.04 LTS
+Rsyslog Server</a>.</p>
+
+<p>First, you uncomment the udp and tcp port binding lines in the /etc/rsyslog.conf file. Next, you add a template for writing the remote incoming logs. See the post referenced above for all the details.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/rsyslog.png" alt="Rsyslog Server Configuration" class="center-image" />
+    <figcaption class="image-caption">Rsyslog Server Configuration</figcaption>
+</figure>
+
+<h2 id="rsyslog-client-setup">Rsyslog Client Setup</h2>
+
+<p>Add the configuration for the remote Rsyslog server to the /etc/rsyslog.conf file on all the Raspberry Pi nodes. Again, see the post referenced above for the details.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/rsyslog_client.png" alt="Rsyslog Client Configuration" class="center-image" />
+    <figcaption class="image-caption">Rsyslog Client Configuration</figcaption>
+</figure>
+
+<p>Also, the syslog is excluded by default. I’m sure a Linux admin knows a good reason for that, but for my home lab I need the logs. In order to send syslog you need to remove the dash in front of it.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/syslog.png" alt="Include syslog" class="center-image" />
+    <figcaption class="image-caption">Include syslog</figcaption>
+</figure>
+
+<p>Finally, the instructions I followed above are for Ubuntu, so the command to restart rsyslog won’t work on Raspbian. Use this command instead.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>service rsyslog restart
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After restarting Rsyslog on all the Raspberry Pis, you should see directories matching the Pi hostnames appear on the Rsyslog server in the /var/log directory, as shown below:</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/centralized_logs.png" alt="Rsyslog Server /var/log Directories" class="center-image" />
+    <figcaption class="image-caption">Rsyslog Server /var/log Directories</figcaption>
+</figure>
+
+<h2 id="defining-log-rotation">Defining Log Rotation</h2>
+<p>Add log rotation rules to avoid filling up the hard disk. This is done with configuration files in the /etc/logrotate.d/ directory.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/sidenote-centralized-logging/log_rotate.png" alt="Log Rotation Configuration Files" class="center-image" />
+    <figcaption class="image-caption">Log Rotation Configuration Files</figcaption>
+</figure>
+
+<p>Each configuration file looks something like this.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>/var/log/pi1/<span class="k">*</span>.log <span class="o">{</span>
+        weekly
+        missingok
+        dateext
+        rotate 3
+        <span class="nv">size</span><span class="o">=</span>10M
+        create 0644 root root
+        notifempty
+        sharedscripts
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>That’s all there is to it. When I figure out how to get cloud logging working with Azure, GCP, or AWS, I will add a new logging post.</p>
+
+<hr />
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://itnext.io/creating-a-full-monitoring-solution-for-arm-kubernetes-cluster-53b3671186cb">Creating a full monitoring solution for ARM Kubernetes Cluster</a></li>
+  <li><a href="https://linoxide.com/linux-how-to/setup-log-rotation-logrotate-ubuntu/">How to Setup Log Rotation with Logrotate on Ubuntu 18.04</a></li>
+  <li><a href="https://computingforgeeks.com/how-to-configure-rsyslog-centralized-log-server-on-ubuntu-18-04-lts/">How to Configure Rsyslog Centralized Log Server on Ubuntu 18.04 LTS</a></li>
+</ul>
+
+
+
+            
+            
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/sidenote-centralized-logging';
+        this.page.identifier = 'https://smitchell.github.io/sidenote-centralized-logging';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

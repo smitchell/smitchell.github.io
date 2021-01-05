@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | Ansible for your Home Lab</title>
+    <meta name="description" content="        ">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/ansible-for-your-home-lab">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="Ansible for your Home Lab" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/ansible-for-your-home-lab" property="og:url">
+    
+    
+    <meta content="2021-01-02T14:17:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="raspberry" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="Ansible for your Home Lab">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/ansible-for-your-home-lab">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Ansible for your Home Lab | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Ansible for your Home Lab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cloud-native Topics is a journey into making tech learning fun." />
+<meta property="og:description" content="Cloud-native Topics is a journey into making tech learning fun." />
+<link rel="canonical" href="https://smitchell.github.io/ansible-for-your-home-lab" />
+<meta property="og:url" content="https://smitchell.github.io/ansible-for-your-home-lab" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-02T14:17:00+00:00" />
+<script type="application/ld+json">
+{"description":"Cloud-native Topics is a journey into making tech learning fun.","url":"https://smitchell.github.io/ansible-for-your-home-lab","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/ansible-for-your-home-lab"},"headline":"Ansible for your Home Lab","dateModified":"2021-01-02T14:17:00+00:00","datePublished":"2021-01-02T14:17:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-raspberry.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/raspberry'>Raspberry</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 10 minutes
+            </p>
+
+            <h1>Ansible for your Home Lab</h1>
+
+            <figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/ansible.png" alt="" class="center-image" />
+    <figcaption class="image-caption"></figcaption>
+</figure>
+
+<p>Disaster struck in my home lab, again. This time I knocked a power cord loose on my USB power hub, taking down four of my Kubernetes nodes. That usually would not have been a “disaster,” but it broke the “sudo” command, and you can’t maintain Ubuntu without the sudo command. Long story.</p>
+
+<p>There are nine Raspberry Pis in my home lab that first ran Raspbian, then Ubuntu, and I rebuilt for other reasons along the way. I decided that rather than do yet another manual re-install, now is a good time to add some automation.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/stack.png" alt="Home Lab Raspberry Pis" class="center-image" />
+    <figcaption class="image-caption">Home Lab Raspberry Pis</figcaption>
+</figure>
+
+<h1 id="ansible">Ansible</h1>
+<p>Ansible is an open-source tool written in python, power shell, and ruby to provision infrastructure, networks, containers, security, cloud, and more. Terraform and Ansible are two of the tools used for creating infrastructure-as-code.</p>
+
+<p>It is easy to get started with Ansible because there is nothing to install on the target systems. Simply install it on your computer and start automating. Redhat sells Ansible Tower for the enterprise, but it is not required to use Ansible. Check out <a href="https://www.ansible.com/overview/how-ansible-works">How Ansible Works</a> to learn more about Ansible.</p>
+
+<p>I first used Ansible in 2016 when the startup where I worked migrated our DC/OS (Data Center Operating System) cluster from vSphere to the cloud. Our three-person team did a cloud bake-off to decide which cloud to use. I took GCP (Google Cloud Platform), which happened to have a DC/OS Ansible playbook. It made deploying DC/OS to GCP easy, so the team chose GCP.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Learn how we deployed DC/OS to GCP using Ansible: <a href="/dcos-on-gcp">Jump to my 2016 post</a>.</div>
+
+<h1 id="home-lab-ansible-playbook">Home Lab Ansible Playbook</h1>
+
+<p>Despite using Ansible off and on since 2016, I never needed to write my own playbooks. This home lab outage is my excuse to automate some tasks using Ansible. My previous post, <a href="/running-ubuntu-on-rpi">Running Ubuntu on a Raspberry Pi Cluster</a>, details the eight steps to set-up Ubuntu on a Raspberry Pi:</p>
+
+<ol>
+  <li>Flash the drive with the Ubuntu server image.</li>
+  <li>Add the ssh file.</li>
+  <li>Change the password at the first login.</li>
+  <li>Add the ssh key on the host as an authorized key.</li>
+  <li>Update and upgrade the Ubuntu packages.</li>
+  <li>Change the hostname.</li>
+  <li>Add the hostname to the /etc/hosts file.</li>
+  <li>Set the static IP address.</li>
+</ol>
+
+<p>My Ansible playbook only handles the last four steps because I ran into a problem with step three, the first login’s mandatory password change. I found playbooks using the sshpass command to handle the initial password change, but I could not install sshpass on my Mac. Another long story. So, I still do step three manually, as well as step four, adding the SSH certificate to the host.</p>
+
+<h2 id="inventory">Inventory</h2>
+<p>Ansible needs an inventory of the target hosts for a playbook. I find the DHCP address of each new host as it boots using my network scanner software, then add the IP address to the list.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/inventory.png" alt="Ansible Hosts Inventory with Variables" class="center-image" />
+    <figcaption class="image-caption">Ansible Hosts Inventory with Variables</figcaption>
+</figure>
+
+<p>Each host in the inventory group gets a “new_ip” and “new_host” variable, that are passed into my Ansible playbook. In the image above, you see that the static IP address, 192.168.1.50, is given to the first host, and its hostname is pi5.</p>
+
+<h2 id="ansible-playbooks">Ansible Playbooks</h2>
+<p>My playbook picks up after step four, automating setup steps five through eight. It does this using seven separate Ansible tasks. There are hundreds of pre-built Ansible modules available to use in your tasks, whether you need to copy a file, or deploy an application to the cloud. Checkout the <a href="https://docs.ansible.com/ansible/2.8/modules/modules_by_category.html">Ansible Module index</a> to see the complete list. These are the seven Ansible tasks in my playbook.</p>
+
+<ol>
+  <li>Update Ubuntu.</li>
+  <li>Change the hostname.</li>
+  <li>Update the /etc/hosts file.</li>
+  <li>Disable Netplan automatic configuration.</li>
+  <li>Update the Netplan configuration with the static IP address.</li>
+  <li>Apply the static IP Netplan configuration.</li>
+  <li>Reboot the host.</li>
+</ol>
+
+<h3 id="1-update-ubuntu">1) Update Ubuntu</h3>
+<p>First, make sure that Ubuntu is up-to-date.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/apt_upgrade.png" alt="Apt Update and Upgrade" class="center-image" />
+    <figcaption class="image-caption">Apt Update and Upgrade</figcaption>
+</figure>
+
+<h3 id="2-change-the-hostname">2) Change the Hostname</h3>
+<p>Change the hostname using the “new_host” variable specified in the inventory file.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/set_host_name.png" alt="Change the Hostname" class="center-image" />
+    <figcaption class="image-caption">Change the Hostname</figcaption>
+</figure>
+
+<h3 id="3-replace-the-etchosts-file">3) Replace the /etc/hosts file</h3>
+<p>Add the hostname specified in the “new_host” variable to the /etc/hosts file. The playbook uses Jinga2 to replace a variable in the template file created from the default /etc/hosts file.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/copy_hosts_file.png" alt="Template Task to Replace /etc/hosts" class="center-image" />
+    <figcaption class="image-caption">Template Task to Replace /etc/hosts</figcaption>
+</figure>
+
+<h3 id="4-disable-automatic-netplan-configuration">4) Disable Automatic Netplan Configuration</h3>
+<p>This task places a file in the /etc/netplan directory to disable the automatic generation of the Netplan configuration.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/disable_network_config.png" alt="Disable Automatic Netplan Configuration Generation" class="center-image" />
+    <figcaption class="image-caption">Disable Automatic Netplan Configuration Generation</figcaption>
+</figure>
+
+<h3 id="5-add-the-static-ip-address-to-the-netplan-configuration">5) Add the Static IP Address to the Netplan Configuration</h3>
+<p>This task uses Jinja2 to replace the host IP in a Netplan configuration template with the “new_ip” variable from the Ansible host inventory.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/setup_static_ip.png" alt="Replace the Netplan Configuration using the Static IP Template" class="center-image" />
+    <figcaption class="image-caption">Replace the Netplan Configuration using the Static IP Template</figcaption>
+</figure>
+
+<h3 id="6-apply-the-netplan-configuration">6) Apply the Netplan Configuration</h3>
+<p>The purpose of this task is to apply the network configuration. I should also add a step to generate and debug the format, but I didn’t find an example.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/apply_netplan.png" alt="Apply the Netplan Configuration" class="center-image" />
+    <figcaption class="image-caption">Apply the Netplan Configuration</figcaption>
+</figure>
+
+<h3 id="7-reboot-the-host">7) Reboot the Host</h3>
+<p>Finally, the Ansible playbook reboots the host.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/Reboot.png" alt="Reboot the Host" class="center-image" />
+    <figcaption class="image-caption">Reboot the Host</figcaption>
+</figure>
+
+<p>Ansible didn’t save me time today since I was learning Ansible as I went, but now I have an automated playbook to save me time and avoid future mistakes.
+Here is the whole playbook:</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/ansible-for-your-home-lab/playbook.png" alt="Ansible Playbook" class="center-image" />
+    <figcaption class="image-caption">Ansible Playbook</figcaption>
+</figure>
+
+<hr />
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://docs.ansible.com/?extIdCarryOver=true&amp;sc_cid=701f2000001OH7YAAW">Ansible Documentation</a></li>
+  <li><a href="https://www.ansible.com/overview/how-ansible-works">How Ansible Works</a></li>
+  <li><a href="https://smitchell.github.io/running-ubuntu-on-rpi">Running Ubuntu on a Raspberry Pi Cluster</a></li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/ansible-for-your-home-lab';
+        this.page.identifier = 'https://smitchell.github.io/ansible-for-your-home-lab';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Jan 2, 2021</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/raspberry'>Raspberry</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/raspberry'>Raspberry</a>
+                            ,
+                        </li>
+                        
+                        <li>
+                            <a href='/category/raspberry'>Python</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

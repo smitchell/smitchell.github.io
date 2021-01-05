@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | Running Ubuntu on a Raspberry Pi Cluster</title>
+    <meta name="description" content="When I started using Kubernetes on 32-bit Raspbian I quickly discovered that many Docker images are not compatible. To avoid spending time rebuilding Docker ...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/running-ubuntu-on-rpi">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="Running Ubuntu on a Raspberry Pi Cluster" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/running-ubuntu-on-rpi" property="og:url">
+    
+    
+    <meta content="2020-11-29T08:42:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="kubernetes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="Running Ubuntu on a Raspberry Pi Cluster">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/running-ubuntu-on-rpi">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Running Ubuntu on a Raspberry Pi Cluster | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Running Ubuntu on a Raspberry Pi Cluster" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When I started using Kubernetes on 32-bit Raspbian I quickly discovered that many Docker images are not compatible. To avoid spending time rebuilding Docker images for linux/amd, I decided to switch to an AMD64 OS. There is an experimental AMD64 version of Raspbian in Beta, but I chose my old friend, Ubuntu." />
+<meta property="og:description" content="When I started using Kubernetes on 32-bit Raspbian I quickly discovered that many Docker images are not compatible. To avoid spending time rebuilding Docker images for linux/amd, I decided to switch to an AMD64 OS. There is an experimental AMD64 version of Raspbian in Beta, but I chose my old friend, Ubuntu." />
+<link rel="canonical" href="https://smitchell.github.io/running-ubuntu-on-rpi" />
+<meta property="og:url" content="https://smitchell.github.io/running-ubuntu-on-rpi" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-29T08:42:00+00:00" />
+<script type="application/ld+json">
+{"description":"When I started using Kubernetes on 32-bit Raspbian I quickly discovered that many Docker images are not compatible. To avoid spending time rebuilding Docker images for linux/amd, I decided to switch to an AMD64 OS. There is an experimental AMD64 version of Raspbian in Beta, but I chose my old friend, Ubuntu.","url":"https://smitchell.github.io/running-ubuntu-on-rpi","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/running-ubuntu-on-rpi"},"headline":"Running Ubuntu on a Raspberry Pi Cluster","dateModified":"2020-11-29T08:42:00+00:00","datePublished":"2020-11-29T08:42:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-raspberry.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 5 minutes
+            </p>
+
+            <h1>Running Ubuntu on a Raspberry Pi Cluster</h1>
+
+            <p>When I started using Kubernetes on 32-bit Raspbian I quickly discovered that many Docker images are not compatible. To avoid spending time rebuilding Docker images for linux/amd, I decided to switch to an AMD64 OS. There is an <a href="https://www.raspberrypi.org/forums/viewtopic.php?t=275370">experimental AMD64 version of Raspbian in Beta</a>, but I chose my old friend, Ubuntu.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/ubuntu+rpi.png" alt="Ubuntu on Raspberry Pi" class="center-image" />
+    <figcaption class="image-caption">Ubuntu on Raspberry Pi</figcaption>
+</figure>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Before switching to Ubuntu, I upgraded the boot loader EEPROM to boot directly from a USB drive without a microSD installed. Learn how: <a href="/boot-from-usb">Jump to article</a>. </div>
+
+<p>On October 22, 2020, Canonical released an <a href="http://ubuntu.com/raspberry-pi">Ubuntu Desktop image optimized for the Raspberry Pi</a>. What has me most excited me about this release its support for AMD64 on the Raspberry Pi 3 and 4.</p>
+
+<div class="embed-container">
+<!--    https://www.nathan-lam.com/projects/jekyll-embed-video-->
+    <iframe src="https://www.youtube.com/embed/0pT4-RcTERU" width="700" height="480" frameborder="0" allowfullscreen="">
+    </iframe>
+</div>
+
+<p>Ubuntu Desktop for Raspberry Pi</p>
+
+<h1 id="setting-up-ubuntu">Setting up Ubuntu</h1>
+
+<p>Getting the host ready for the cluster is easy now that it boots directly from the USB drive. All we have to do the following:</p>
+<ol>
+  <li>Flash a USB drive with Ubuntu.</li>
+  <li>Install the latest updates.</li>
+  <li>Set the static IP address</li>
+  <li>Change the hostname.</li>
+  <li>Add SSH keys for authentication.</li>
+</ol>
+
+<h2 id="flashing-the-usb-drive">Flashing the USB Drive</h2>
+
+<p>Plug a USB drive into your desktop or laptop. Open the Raspberry Pi Imager and select the distribution you desire. I run my servers headless, so I chose Ubuntu Server 20.10 (RPI 3, 4, 400) for AMD64. Select your USB drive under “SD Card,” and click Write.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/ubuntu_flash.png" alt="Flash the USB Drive with Ubuntu" class="center-image" />
+    <figcaption class="image-caption">Flash the USB Drive with Ubuntu</figcaption>
+</figure>
+
+<p>Remount the USB drive after it finishes to add the ssh file. Notice, the Ubuntu USB drive mounts as “/Volumes/system-boot” instead of “/Volumes/boot” as the Raspbian image does.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">touch</span> /Volumes/system-boot/ssh
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="boot-ubuntu">Boot Ubuntu</h2>
+<p>Attach the USB drive to the Raspberry Pi and power it up. Give the system a minute to reboot, find the IP address on your network, and connect via ssh. Use “ping -c 2 ubuntu” to get the IP address.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ping <span class="nt">-c</span> 2 ubuntu
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I could not immediately connect with SSH to one of my eight Raspberry Pis, even though I added the ssh file. If this happens to you, attach a monitor and keyboard, login, and reset the password. SSH should work after you reboot.</p>
+
+<h2 id="update-ubuntu">Update Ubuntu</h2>
+
+<p>The first time you connect to Ubuntu as user “ubuntu” with the password “ubuntu,” the system prompts you to change the password. After changing the password, install the latest Ubuntu updates.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt full-upgrade <span class="nt">-y</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="setting-the-static-ip">Setting the Static IP</h2>
+
+<p>Here is a six-minute video showing how to set a static IP using Netplan.</p>
+
+<div class="embed-container">
+<!--    https://www.nathan-lam.com/projects/jekyll-embed-video-->
+    <iframe src="https://www.youtube.com/embed/gJtZOlYR_MM" width="700" height="480" frameborder="0" allowfullscreen="">
+    </iframe>
+</div>
+
+<p>Setting Static IPs with Netplan</p>
+
+<p>Before setting the static IP, disable cloud-init’s network configuration capabilities by adding this file: 
+/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg. Include the line below in the file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>network: <span class="o">{</span>config: disabled<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Make a backup copy of the file “/etc/netplan/50-cloud-init.yaml,” then add the static IP information. Here is how I configured my 50-cloud-init.yaml file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="c"># This file is generated from information provided by the datasource.  Changes</span>
+<span class="c"># to it will not persist across an instance reboot.  To disable cloud-init's</span>
+<span class="c"># network configuration capabilities, write a file</span>
+<span class="c"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span>
+<span class="c"># network: {config: disabled}</span>
+network:
+  version: 2
+  ethernets:
+    eth0:
+        dhcp4: <span class="nb">false
+        </span>addresses: <span class="o">[</span>192.168.1.10/24]
+        gateway4: 192.168.1.1
+        nameservers:
+          addresses: <span class="o">[</span>192.168.1.1, 8.8.8.8]
+        match:
+          driver: bcmgenet smsc95xx lan78xx
+        optional: <span class="nb">true
+        </span>set-name: eth0
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Validate the YAML file.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>netplan <span class="nt">--debug</span> generate
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/netplan_debug.png" alt="Verify the Netplan" class="center-image" />
+    <figcaption class="image-caption">Verify the Netplan</figcaption>
+</figure>
+
+<p>If the file is valid, apply the changes and reboot; however, if your keyboard is still attached, use it instead of doing this with an ssh connection since the IP address will change.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>netplan apply
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Reboot and connect to the host on its new IP address.</p>
+
+<h2 id="changing-the-host-name">Changing the Host Name</h2>
+
+<p>Give the host a unique name. My cluster hostnames are pi1 - pi8. Use the hostnamectl command to make the change.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>hostnamectl set-hostname pi1
+</pre></td></tr></tbody></table></code></pre></div></div>
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/hostname.png" alt="Change the Hostname" class="center-image" />
+    <figcaption class="image-caption">Change the Hostname</figcaption>
+</figure>
+
+<p>Be sure to add the hostname to your /etc/hosts file too.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/etc-hosts.png" alt="Add hostname to /etc/hosts" class="center-image" />
+    <figcaption class="image-caption">Add hostname to /etc/hosts</figcaption>
+</figure>
+
+<h2 id="adding-your-ssh-key-for-authentication">Adding your SSH Key for Authentication</h2>
+
+<p>Add your computer’s SSH key to the host to avoid having to enter a password when you connect with SSH.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> This tip shows how to set up SSH and multicast commands to all the nodes in the cluster: <a href="/how-to-multicast-commands">Jump to the article</a>. </div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh-copy-id <span class="nt">-i</span> ~/.ssh/id_rsa.pub  ubuntu@pi1
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>That’s it. We’re now ready to re-install Rancher K3s Kubernetes.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> See my previous post on installing Rancher k3s on Raspbian. I made updates to cover Ubuntu.: <a href="/running-kubernetes-on-rpi">Jump to the article</a>. </div>
+
+<p>Here is the result:</p>
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-29-running-ubuntu-on-rpi/UbuntuAMD64Pis.png" alt="Ubuntu on Pis" class="center-image" />
+    <figcaption class="image-caption">Ubuntu on Pis</figcaption>
+</figure>
+
+<hr />
+<h1 id="references">References</h1>
+<ul>
+  <li>https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview</li>
+  <li>https://www.youtube.com/watch?v=gJtZOlYR_MM</li>
+  <li>https://www.youtube.com/watch?v=0pT4-RcTERU</li>
+  <li><a href="https://ubuntu.com/blog/build-a-raspberry-pi-desktop-with-an-ubuntu-heart">Build a Raspberry Pi Desktop with an Ubuntu heart</a></li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/running-ubuntu-on-rpi';
+        this.page.identifier = 'https://smitchell.github.io/running-ubuntu-on-rpi';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Nov 29, 2020</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/kubernetes'>Kubernetes</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Kubernetes</a>
+                            ,
+                        </li>
+                        
+                        <li>
+                            <a href='/category/kubernetes'>Raspberry</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

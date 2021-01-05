@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | How to Configure Raspbian Linux</title>
+    <meta name="description" content="        Raspbian Logo">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/how-to-configure-raspbian-linux">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="How to Configure Raspbian Linux" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/how-to-configure-raspbian-linux" property="og:url">
+    
+    
+    <meta content="2020-03-03T07:17:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="raspberry" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="How to Configure Raspbian Linux">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/how-to-configure-raspbian-linux">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Configure Raspbian Linux | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Configure Raspbian Linux" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Raspbian Logo" />
+<meta property="og:description" content="Raspbian Logo" />
+<link rel="canonical" href="https://smitchell.github.io/how-to-configure-raspbian-linux" />
+<meta property="og:url" content="https://smitchell.github.io/how-to-configure-raspbian-linux" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-03T07:17:00+00:00" />
+<script type="application/ld+json">
+{"description":"Raspbian Logo","url":"https://smitchell.github.io/how-to-configure-raspbian-linux","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/how-to-configure-raspbian-linux"},"headline":"How to Configure Raspbian Linux","dateModified":"2020-03-03T07:17:00+00:00","datePublished":"2020-03-03T07:17:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-raspberry.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/raspberry'>Raspberry</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 15 minutes
+            </p>
+
+            <h1>How to Configure Raspbian Linux</h1>
+
+            <figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspbian-logo-300x253.png" alt="Raspbian Logo" class="center-image" />
+    <figcaption class="image-caption">Raspbian Logo</figcaption>
+</figure>
+
+<p>This article is the second in my series describing how I built a small data center out of Raspberry Pis and the struggles I overcame along the way. The first article, <a href="/some-assembly-required">Some Assembly Required</a>, covered choosing parts and assembling the cluster. This article picks up from there with the installation of the operating system on your Raspberry Pis.</p>
+
+<p>Six steps to setting up your OS:</p>
+
+<ol>
+  <li>Pick a Linux distribution</li>
+  <li>Flash the OS to a MicroSD card.</li>
+  <li>Enable SSH</li>
+  <li>Connect, update, and adjust the configuration</li>
+  <li>Set the static IP address.</li>
+  <li>(optional) Partition the SSD and make it the boot drive</li>
+</ol>
+
+<h1 id="choosing-a-linux-distribution">Choosing a Linux Distribution</h1>
+<p>You have options when it comes to the OS. Here are a few Linux distributions that run on Raspberry Pis.</p>
+
+<ul>
+  <li>Arch Linux Arm</li>
+  <li>Centos</li>
+  <li>Gentoo</li>
+  <li>Kali Linux</li>
+  <li>OpenSuse</li>
+  <li>Raspbian</li>
+  <li>Ubuntu</li>
+</ul>
+
+<p>There are other specialty distributions for media servers, firewalls, etc. Those aren’t appropriate for Kubernetes, but may find a place in your ecosystem, eventually. I briefly ran <a href="https://openwrt.org/">OpenWrt</a> on one Pi as a firewall, before repurposing that Pi for my cluster.</p>
+
+<p>In the end, I chose Rasbian because of the large community of Raspbian users. If you have an affinity for Centos, Ubuntu, or some other Linux distribution, then that may be the best choice for you.</p>
+<h1 id="creating-boot-images">Creating Boot images</h1>
+<p>I am running Raspbian headless, with no monitor or keyboard, so I selected the Raspbian Lite version instead of the desktop version. Install an imaging tool, like <a href="https://www.raspberrypi.org/blog/raspberry-pi-imager-imaging-utility/">Raspberry Pi Imager</a>, to flash your MicroSD card.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspberry_pi_imager.png" alt="Raspberry Pi Imager" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Imager</figcaption>
+</figure>
+
+<p>Launch the imaging software, like Etcher, or the Raspberry Pi Imager shown above. Pick the desired Linux image. Insert the MicroSD card and flash it. Remove the MicroSD card when prompted by the imager, then reinsert it and it will be mounted.</p>
+<h1 id="enabling-ssh">Enabling SSH</h1>
+<p>To enable SSH on the first boot, you must create an empty file named “ssh” on the boot image. 
+The MicroSD card should automatically mount as /Volumes/boot when it is reinserted. Use the “touch” command to create an empty file named “ssh” in the boot directory. On a Mac, the following command creates the “ssh” file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">touch</span> /Volumes/boot/ssh
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="first-boot">First Boot</h1>
+<p>There are a number of changes to make after the first boot. Assuming that you are running headless, the first challenge is discovering the DHCP IP address assigned to the Raspberry Pi when it booted.</p>
+<h2 id="find-the-ip-address">Find the IP Address</h2>
+<p>Insert the MicroSD into the Raspberry Pi, power it on, and give it a minute to come online. <a href="https://angryip.org/">Angry IP Scanner<a></a> is a free network scanner to sniff out the IP address on your network. The new device shows up with a hostname of “raspberrypi,” as pictured below.</a></p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/network-scan.png" alt="https://angryip.org/" class="center-image" />
+    <figcaption class="image-caption">https://angryip.org/</figcaption>
+</figure>
+
+<p>Open a terminal and use “ssh” to connect to the Raspberry Pi as the “pi” user, for example:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh pi@192.168.1.196
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The default password is “raspberry.” Use “apt” to upgrade Raspbian to current versions.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt full-upgrade <span class="nt">-y</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Would you like to be able to update all Raspbian on your Raspberry Pis at once and broadcast commands to all your Raspberry Pis simultaneously? If so, see my side-note <a href="/how-to-multicast-commands">How to Multicast Commands</a>. More than just multicasting, it shows how to use a keyboard shortcut to launch multiple terminal sessions simultaneously, each of which automatically connects to a different Raspberry Pi.</div>
+
+<h1 id="adjust-the-configuration">Adjust the Configuration</h1>
+<p>Raspbian has a configuration utility to edit its configuration. We’ll use it to make initial changes.
+After making this group of changes, we’ll reboot and make sure we can connect to the host. These changes can all be made in a terminal, however, the configuration tool makes it easier if your Linux skills are rusty.</p>
+
+<p>Here’s what we’ll be doing:</p>
+
+<ol>
+  <li>Change User Password</li>
+  <li>Localisation Options</li>
+  <li>Network Options</li>
+</ol>
+
+<p>Launch the raspi-config utility with this command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>raspi-config
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The main menu appears:</p>
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspi-config-home.png" alt="Raspberry Pi Software Configuration Tool Main Menu" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Software Configuration Tool Main Menu</figcaption>
+</figure>
+
+<p>Open the System Options menu.</p>
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspi-config-sysops.png" alt="Raspberry Pi Software Configuration Tool Main Menu" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Software Configuration Tool Main Menu</figcaption>
+</figure>
+
+<h2 id="change-user-password">Change User Password</h2>
+<p>Select the “Change User Password” option by pressing Enter on the top menu item, shown in red above. Enter “OK” when prompted, and then set your own, secure password.</p>
+<h2 id="localization-options">Localization Options</h2>
+<p>Next, update the localization options.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspi-config-localization.png" alt="Raspberry Pi Software Configuration Tool Localization Menu" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Software Configuration Tool Localization Menu</figcaption>
+</figure>
+
+<h3 id="change-locale">Change Locale</h3>
+<p>The default locale is “en_GB.UTF-8 UTF-8.” Change if desired.</p>
+<h3 id="change-time-zone">Change Time Zone</h3>
+<p>The default time zone is “London.” Change if desired.</p>
+<h3 id="change-keyboard-layout">Change Keyboard Layout</h3>
+<p>It is good to have a keyboard to use in case of SSH problems. A keyboard must be attached in order to use keyboard configuration. I bought a Logitech K400 Plus Wireless Touch TV Keyboard with Easy Media Control and Built-In Touchpad. It has to be mapped correctly or it won’t work when you need it. The keyboard needs to be attached to the Raspberry Pi when you change the configuration so that it can be probed by Raspbian. For me, that meant moving the keyboard’s USB bluetooth connector from one Raspbian Pi to the next as I set up each of them.</p>
+
+<p>Select Change Keyboard Layout and then follow the prompts appropriately for your keyboard model. If the initial menu does not load, ensure that your keyboard is attached. For me, this happened when I moved from one Raspberry Pi to the next but forgot to move the Bluetooth USB connector.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b>  When I first started I was unable to sign in to my first Raspberry Pi via ssh. I tried and tried, nothing worked. Eventually, I discovered the key mapping of the keyboard I used to reset the password was wrong. One of the special characters in my password was map to a different key, which is why I couldn’t log in over SSH from my laptop. I  reattached the keyboard, changed the password back to “raspberry,” corrected the keyboard mapping, then changed the password back again to fix the problem.</div>
+
+<h2 id="change-the-hostname">Change the hostname</h2>
+<p>The last thing we’ll do before rebooting is change the hostname. This makes it possible to distinguish between this Raspberry Pis and others on your network. Return to the main menu and select Network Options.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/raspi-config-network.png" alt="Raspberry Pi Software Configuration Tool Network Options Menu" class="center-image" />
+    <figcaption class="image-caption">Raspberry Pi Software Configuration Tool Network Options Menu</figcaption>
+</figure>
+
+<p>Select Hostname and change the name from “raspberrypi” to a unique name for your cluster. I named mine “pi1” - “pi6.” Select “yes” when prompted to reboot.</p>
+
+<p>Give the Pi a minute to finish rebooting, then use ssh to reconnect to the host using the same DHCP IP address you originally found on the network with the IP scanner. This time log in using the new password you set above.</p>
+<h2 id="reserved-dhcp-or-static-ip">Reserved DHCP or Static IP</h2>
+
+<p>You’ll want to lock down the Raspberry Pi’s internet address so that it doesn’t change after a shutdown or loss of power. Most home routers have a setting to reserve the DHCP address for a device. That may be the easiest option for you, in which case, you can sign in to your home router and reserve the DHCP address of each Raspberry Pi. Alternatively, you can give each Raspberry Pi a static IP address.</p>
+<h3 id="static-ip-addresses">Static IP Addresses</h3>
+
+<p>To use static IP addresses, sign in to your home router and find its DHCP address range.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/DHCP_range.png" alt="Home Router DHCP Server IP Range" class="center-image" />
+    <figcaption class="image-caption">Home Router DHCP Server IP Range</figcaption>
+</figure>
+
+<p>DHCP addresses start at 192.168.1.100 on the router shown above, so addresses below 192.168.1.100 are available to use as static IP addresses. Edit /etc/dhcpcd.conf and find the section named “Example of static IP configuration.” Uncomment the interface line, and change the routers and domain main servers to be the Router’s LAN IPv4 Address pictured above, and set the static IP address to the desired IP. I left the IPv6 address commented out, but you can set that too if you like.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>vi /etc/dhcpcd.conf
+<span class="nb">sudo </span>reboot
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The updated settings should look something like this:</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-03-10-how-to-configure-raspbian/static_ip.png" alt="Example Static IP Configuration" class="center-image" />
+    <figcaption class="image-caption">Example Static IP Configuration</figcaption>
+</figure>
+
+<p>Before connecting to the host you may need to remove the old IP address from your laptop’s ~/.ssh/known_hosts. Edit ~/.ssh/known_hosts, delete the line starting with the Pi’s old DHCP IP address, and save the file.</p>
+
+<p>To test the change, ssh to the host using the new static IP address.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh pi@192.168.1.10
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="booting-from-ssd">Booting from SSD</h1>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> UPDATE: The Raspberry Pi now supports booting from USB3. The video below shows how.</div>
+
+<div class="embed-container">
+<!--    https://www.nathan-lam.com/projects/jekyll-embed-video-->
+    <iframe src="https://www.youtube.com/embed/8tTFgrOCsig" width="700" height="480" frameborder="0" allowfullscreen="">
+    </iframe>
+</div>
+
+<p>I boot from microSD still because it is easier to access in my cluster rack. If I booted from mSATA, I would have to disassemble my rack to re-image a node.</p>
+
+<p>Repartition the SSD drive.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>fdisk <span class="nt">--list</span> <span class="c"># (to find your SSD)</span>
+<span class="nb">sudo </span>fdisk /dev/sda
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once you launch fdisk perform the following steps:</p>
+
+<ol>
+  <li>“p” to print the partitions. There should be none. If there are any partitions, use “d” to delete them.</li>
+  <li>“n” to create a new partition.
+    <ul>
+      <li>Accept the default, “p” (primary)</li>
+      <li>Accept the first sector start.</li>
+      <li>Accept the last sector start.</li>
+    </ul>
+  </li>
+  <li>“w” to write the partition.</li>
+</ol>
+
+<p>Next, use mkfs to format the new partition. Answer “y” when prompted whether to proceed despite a dos partition being found.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>mkfs.ext4 /dev/sda
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>When the format operation completes, run the following commands to copy the MicroSD card to the SSD.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo mkdir</span> /media/external
+<span class="nb">sudo </span>mount /dev/sda /media/external
+<span class="nb">cd</span> /media/external
+<span class="nb">sudo </span>rsync <span class="nt">-avx</span> <span class="nt">--exclude</span> /media/external / /media/external/
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="switching-the-boot-drive">Switching the Boot Drive</h2>
+<p>The last step in the process is to change the Raspberry Pi to use the micro SATA as the root. Two changes are needed in the  /boot/cmdline.txt file:</p>
+
+<ol>
+  <li>Change the root location</li>
+  <li>Set the usb-storage.quirks parameter using the vendor id and part number of your USB to SSD converter to prevent it from binding to the “uas” storage driver.</li>
+</ol>
+
+<p>Make a backup before editing  /boot/cmdline.txt:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo cp</span> /boot/cmdline.txt /boot/cmdline.txt.bak
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Carefully edit /boot/cmdline.txt and change the root path, “root=/dev/sda,” and append the usb-storage.quirks parameter, i.e. “usb-storage.quirks=045b:0229:u.”</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> To learn how to use “usb-storage.quirks” to bind to the right USB storage driver, see my side note: <a href="/how-to-bind-to-the-right-usb-storage-driver.html">How to bind to the right USB Storage Driver</a>.</div>
+
+<p>Here is how the cmdline looks before and after editing.</p>
+<h3 id="before">BEFORE</h3>
+
+<p>console=serial0,115200 console=tty1 root=PARTUUID=738a4d67-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait</p>
+
+<h3 id="after">AFTER</h3>
+<p>console=serial0,115200 console=tty1 root=<span style="color:red">/dev/sda</span> rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait <span style="color:red">usb-storage.quirks=045b:0229:u</span></p>
+
+<p>Reboot and then reconnect to the host and verify the change with the findmnt command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>findmnt <span class="nt">-n</span> <span class="nt">-o</span> SOURCE /
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The response from “findmnt” should be “/dev/sda” (or whatever you passed into cmdline.txt).</p>
+
+<h3 id="the-raspberry-pi-wont-boot---what-do-i-do">The Raspberry Pi won’t boot - What do I do?</h3>
+<p>If you make a mistake in the cmdline.txt file, booting might fail. No worries. That is why you made a backup copy of cmdline.txt before making changes. Remove the MicroSD card from the Pi, pop it into your computer, and restore the original /boot/cmdline.txt file from the backup you created. Problem solved.</p>
+<h2 id="rinse-and-repeat">Rinse and Repeat</h2>
+<p>Repeat this process for each Raspberry Pi. The next post will cover simple tips that making working on your Raspberry Pis a pleasure.</p>
+
+<h1 id="next-steps">Next Steps</h1>
+
+<p>In my next article we will cover installing Kubernetes and setting up your cluster.</p>
+
+<hr />
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://angryip.org/">https://angryip.org</a></li>
+  <li><a href="https://iterm2.com/">https://iterm2.com</a></li>
+  <li><a href="https://www.balena.io/etcher/">https://www.balena.io/etcher</a></li>
+  <li><a href="https://manhattanproducts.us/manhattan-en-mini-multi-card-readerwriter-101981.html">https://manhattanproducts.us/manhattan-en-mini-multi-card-readerwriter-101981.html</a></li>
+  <li><a href="https://www.electromaker.io/blog/article/12-best-linux-operating-systems-for-the-raspberry-pi">https://www.electromaker.io/blog/article/12-best-linux-operating-systems-for-the-raspberry-pi</a></li>
+  <li><a href="https://www.raspberrypi.org/documentation/installation/installing-images/">https://www.raspberrypi.org/documentation/installation/installing-images</a></li>
+  <li><a href="https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address/">https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address</a></li>
+  <li><a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">https://www.raspberrypi.org/documentation/remote-access/ssh</a></li>
+  <li><a href="https://www.raspberrypi.org/documentation/raspbian/updating.md">https://www.raspberrypi.org/documentation/raspbian/updating.md</a></li>
+  <li><a href="https://www.youtube.com/watch?v=FM9wuFLufyA">https://www.youtube.com/watch?v=FM9wuFLufyA</a></li>
+  <li>https://www.youtube.com/watch?v=FM9wuFLufyA</li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/how-to-configure-raspbian-linux';
+        this.page.identifier = 'https://smitchell.github.io/how-to-configure-raspbian-linux';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Mar 3, 2020</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/raspberry'>Raspberry</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/raspberry'>Raspberry</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

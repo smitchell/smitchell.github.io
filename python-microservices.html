@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | Cloud-native Python from a Spring Developer Perspective</title>
+    <meta name="description" content="When a client asked for microservices written in Python, instead of the Spring Cloud ecosystem that I’m accustomed to, it was an adjustment. The task at hand...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/python-microservices">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="Cloud-native Python from a Spring Developer Perspective" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/python-microservices" property="og:url">
+    
+    
+    <meta content="2020-11-12T11:13:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="python" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="Cloud-native Python from a Spring Developer Perspective">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/python-microservices">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Cloud-native Python from a Spring Developer Perspective | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Cloud-native Python from a Spring Developer Perspective" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When a client asked for microservices written in Python, instead of the Spring Cloud ecosystem that I’m accustomed to, it was an adjustment. The task at hand was to replace an aging desktop application used by several hundred support staff with a simple, web-based application written in a programming language that the team knew. The original developers are no longer around, and the application is out of date. It has become challenging to install and maintain, and the list of bugs and needed enhancements grew too large for the client to ignore any longer. The client wanted a new tool that was faster, more reliable, had more features and was easier to support." />
+<meta property="og:description" content="When a client asked for microservices written in Python, instead of the Spring Cloud ecosystem that I’m accustomed to, it was an adjustment. The task at hand was to replace an aging desktop application used by several hundred support staff with a simple, web-based application written in a programming language that the team knew. The original developers are no longer around, and the application is out of date. It has become challenging to install and maintain, and the list of bugs and needed enhancements grew too large for the client to ignore any longer. The client wanted a new tool that was faster, more reliable, had more features and was easier to support." />
+<link rel="canonical" href="https://smitchell.github.io/python-microservices" />
+<meta property="og:url" content="https://smitchell.github.io/python-microservices" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-12T11:13:00+00:00" />
+<script type="application/ld+json">
+{"description":"When a client asked for microservices written in Python, instead of the Spring Cloud ecosystem that I’m accustomed to, it was an adjustment. The task at hand was to replace an aging desktop application used by several hundred support staff with a simple, web-based application written in a programming language that the team knew. The original developers are no longer around, and the application is out of date. It has become challenging to install and maintain, and the list of bugs and needed enhancements grew too large for the client to ignore any longer. The client wanted a new tool that was faster, more reliable, had more features and was easier to support.","url":"https://smitchell.github.io/python-microservices","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/python-microservices"},"headline":"Cloud-native Python from a Spring Developer Perspective","dateModified":"2020-11-12T11:13:00+00:00","datePublished":"2020-11-12T11:13:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header class="hero-image" style="background-image: url(/img/feature-python.jpg);">
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/python'>Python</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 10 minutes
+            </p>
+
+            <h1>Cloud-native Python from a Spring Developer Perspective</h1>
+
+            <p>When a client asked for microservices written in Python, instead of the Spring Cloud ecosystem that I’m accustomed to, it was an adjustment. The task at hand was to replace an aging desktop application used by several hundred support staff with a simple, web-based application written in a programming language that the team knew. The original developers are no longer around, and the application is out of date. It has become challenging to install and maintain, and the list of bugs and needed enhancements grew too large for the client to ignore any longer. The client wanted a new tool that was faster, more reliable, had more features and was easier to support.</p>
+
+<p>These are my key takeaways from this microservices project:</p>
+
+<ul>
+  <li>Good microservice design transcends programming languages.</li>
+  <li>REST and ORM libraries written in different languages are easy to transition between for experienced developers.</li>
+  <li>JOSE (Javascript Object Signing and Encryption) simplifies securing a resource service.</li>
+  <li>NATS is a simpler alternative to messaging services like RabbitMQ.</li>
+</ul>
+
+<p>During design, we chose microservice boundaries that aligned with the application’s backing services. This system aggregates data from several LDAP and MSSQL sources, so we built a microservice for each of them. We could have created fine-grained microservices for individual domain contexts, like a facility service, audit service, keywords service, etc. Given the project budget and the type of application we were replacing, one microservice per backend made the most business sense.</p>
+
+<p>Aside from the syntactical differences between Java and Python, the overall project semantics felt familiar, making for an easy transition. This table shows the Python libraries used in the project next to the equivalent Spring library:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spring</th>
+      <th>Python</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spring Data JPA</td>
+      <td>SQLAlchemy</td>
+    </tr>
+    <tr>
+      <td>Spring REST Docs</td>
+      <td>Hand-coded Swagger YAML files</td>
+    </tr>
+    <tr>
+      <td>Spring LDAP</td>
+      <td>LDAP3</td>
+    </tr>
+    <tr>
+      <td>Spring Security Resource Service</td>
+      <td>Python JOSE</td>
+    </tr>
+    <tr>
+      <td>Spring Web MVC</td>
+      <td>Python Flask</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Python libraries exist that generate Swagger files, but we didn’t have time to add them. We loaded the Swagger file into ng OpenAPI Gen to generate the Angular API clients, something I never tried before. I recommend it because the generated client saves development time, reduces errors by implementing the API contract from the Swagger file, and speeds development by making auto-complete available for the method signatures and data types specified in the Swagger file.</p>
+
+<p>The client uses Ping Identity for single-sign-on, so we didn’t have to worry about standing up an authentication service. We built a simple Security microservice to interface with Ping Identity. The frontend redirects the user to Ping Identity to do OpenID Connect authentication. The authorization code returned by Ping Identity is then posted to the Security microservice to exchange with Ping Identity for an access token.</p>
+
+<p>Instead of setting up the API Gateway as an OAuth2 Resource Service using Spring Security, we use Python JOSE to verify the access token. The frontend caches the access token and passes it in the Authorization header to API Gateway REST endpoints. The Security microservice takes the access token, along with the JWT signing key, and calls the Python JOSE “decode” method to confirm the access token’s authenticity. This approach to token verification works much faster than calling the Ping Identity token introspection endpoint for validation.</p>
+
+<p>As far as not having Spring Discovery and Spring Configuration, Kubernetes Services and Namespaces work just as well. Load balanced Kubernetes Services allow the client to scale microservices up and down, and the Service load balancer knows when instances get added or removed. The microservice does not need to register with a discovery service at startup.</p>
+
+<p>Using separate Kubernetes namespaces for the development and production environments eliminated the need for a configuration service. The release pipeline supplies the appropriate variables and secrets for a given target namespace. Also, namespaces allow us to reuse the Kubernetes Service URLs in both environments, so the API Gateway calls the same backend Service URLs in development as it does in production.</p>
+
+<p>System ingress from the client’s Intranet is only allowed into Nginx, which hosts front-end resources and the API Gateway service. The backend services connect to a separate subnet to which only the API Gateway has access. The backend services can all communicate with NATS, used for the event-driven design, which connects to the same subnet.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/2020-11-12-python-microservices/python_microservices.png" alt="Kubernetes Diagram" class="center-image" />
+    <figcaption class="image-caption">Kubernetes Diagram</figcaption>
+</figure>
+
+<p>The NATS messaging service took minimal work to configure, making it easy to get going with the event-driven design. The original desktop application had a delay while it logged user actions. With the new system, publishing user actions to NATS is fast, and the time it takes to write the event to the audit log occurs in the background. Also, changing LDAP data is slow in the desktop application. The client is thrilled with the new asynchronous design for LDAP changes. Users get a sub-second response time when they publish change requests to NATS and continue working while the updates occur behind the scenes.</p>
+
+<p>One thing we didn’t get to is a distributed cache. Many auto-completed input fields and lists use infrequently changed LDAP data, such as facilities, departments, positions, and job roles. The web interface would be snappier if it used an in-memory cache, like Redis.</p>
+
+<p>Overall, the project was a success, thanks in large part to my teammates at <a herf="https://www.thinkahead.com">Ahead</a>. We delivered the simplified, microservice solution that the client asked for written in the client’s preferred programming language. The client no longer has to support a desktop application. The bugs are gone, and users got the enhancements they wanted.  Best of all, thanks to the event-driven design, the users aren’t stuck waiting and waiting for LDAP updates to complete.</p>
+
+<h1 id="references">References</h1>
+<ul>
+  <li><a href="https://www.behance.net/jessjwilliamson/">Python Logo Credit: Jessica Williamson</a></li>
+  <li><a href="https://www.thinkahead.com/">Ahead</a></li>
+  <li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Kubernetes Namespace</a></li>
+  <li><a href="https://www.nginx.com/products/nginx/kubernetes-ingress-controller/">Kubernetes Nginx</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Kubernetes Service</a></li>
+  <li><a href="https://ldap3.readthedocs.io/en/latest/">LDAP3</a></li>
+  <li><a href="https://nats.io/">nats.io</a></li>
+  <li><a href="https://oauth.net/2/">OAuth2</a></li>
+  <li><a href="https://openid.net/connect/">OpenID Connect Authentication</a></li>
+  <li><a href="https://www.npmjs.com/package/ng-openapi-gen">ng OpenAPI Gen</a></li>
+  <li><a href="https://www.pingidentity.com/">Ping Identity</a></li>
+  <li><a href="https://python-jose.readthedocs.io/en/latest/">Python JOSE</a></li>
+  <li><a href="https://spring.io/projects/spring-cloud">Spring Cloud</a></li>
+  <li><a href="https://spring.io/projects/spring-data-jpa">Spring Data JPA</a></li>
+  <li><a href="https://spring.io/projects/spring-ldap">Spring LDAP</a></li>
+  <li><a href="https://spring.io/projects/spring-restdocs">Spring REST Docs</a></li>
+  <li><a href="https://spring.io/projects/spring-security">Spring Security</a></li>
+  <li><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#spring-web">Spring Web MVC</a></li>
+  <li><a href="https://www.sqlalchemy.org/">SQLAlchemy</a></li>
+</ul>
+
+
+
+            
+                
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/python-microservices';
+        this.page.identifier = 'https://smitchell.github.io/python-microservices';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <img src="/img/steve.jpg" class="user-icon " alt="user-image">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="category-list">
+                <p>Published <span>Nov 12, 2020</span></p>
+                <p><a href="/author/steve">Steve mitchell</a> in <a href='/category/python'>Python</a></p>
+
+                <div class="other-catergories">
+                    <h3>Also found in</h3>
+
+                    <ul>
+                        
+                        <li>
+                            <a href='/category/python'>Python</a>
+                            ,
+                        </li>
+                        
+                        <li>
+                            <a href='/category/python'>Kubernetes</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div>
+
+
+    
+</footer>
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>

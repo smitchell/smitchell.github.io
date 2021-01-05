@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'unsafe-inline' 'unsafe-eval' c.disquscdn.com disqus.com;
+          font-src 'self' data: fonts.gstatic.com;
+          frame-src www.youtube.com  disqus.com cse.google.com;
+          script-src-elem 'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com cloud-native-topics.disqus.com c.disquscdn.com cse.google.com www.google.com clients1.google.com;
+          style-src-elem 'self' 'unsafe-inline' data: fonts.googleapis.com c.disquscdn.com www.google.com;
+          img-src data: 'self' www.google-analytics.com cdn.viglink.com referrer.disqus.com c.disquscdn.com www.google.com www.googleapis.com clients1.google.com ssl.gstatic.com;
+          connect-src  'self' links.services.disqus.com c.disquscdn.com  www.google-analytics.com;">
+
+    <title>Cloud Native Topics | How to bind to the right USB storage driver</title>
+    <meta name="description" content="The article How to Configure Raspbian Linux discussed using the usb-storage.quirks parameter to bind to the right storage manager. This side note goes on to ...">
+
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="canonical" href="https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver">
+    <link rel="alternate" type="application/rss+xml" title="Cloud Native Topics" href="https://smitchell.github.io/feed.xml" />
+<!--    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>-->
+
+    <!--[if lt IE 9]>
+        <script src="/js/vendor/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://cse.google.com/cse.js?cx=007699357961925698255:cj3ci6x7xuz"></script>
+
+    <!-- facebook Open Graph Metadatas -->
+    <meta content="609039549219229" property="fb:app_id">
+    <meta content="Cloud Native Topics" property="og:site_name">
+    
+    <meta content="How to bind to the right USB storage driver" property="og:title">
+    
+    
+    <meta content="article" property="og:type">
+    
+    
+    <meta content="Cloud-native Topics is a journey into making tech learning fun." property="og:description">
+    
+    
+    <meta content="https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver" property="og:url">
+    
+    
+    <meta content="2020-03-07T10:16:00+00:00" property="article:published_time">
+    <meta content="https://smitchell.github.io/about/" property="article:author">
+    
+    
+    
+    
+    <meta content="side-notes" property="article:section">
+    
+    
+    
+    
+    
+
+    <!-- Twitter cards metadatas -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@runner_steve">
+    <meta name="twitter:creator" content="@runner_steve">
+    
+    <meta name="twitter:title" content="How to bind to the right USB storage driver">
+    
+    
+    <meta name="twitter:url" content="https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver">
+    
+    
+    <meta name="twitter:description" content="Cloud-native Topics is a journey into making tech learning fun.">
+    
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1918559-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1918559-7');
+</script>
+
+    <link type="application/atom+xml" rel="alternate" href="https://smitchell.github.io/feed.xml" title="Cloud Native Topics" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to bind to the right USB storage driver | Cloud Native Topics</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to bind to the right USB storage driver" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The article How to Configure Raspbian Linux discussed using the usb-storage.quirks parameter to bind to the right storage manager. This side note goes on to explain usb-storage.quirks in more detail." />
+<meta property="og:description" content="The article How to Configure Raspbian Linux discussed using the usb-storage.quirks parameter to bind to the right storage manager. This side note goes on to explain usb-storage.quirks in more detail." />
+<link rel="canonical" href="https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver" />
+<meta property="og:url" content="https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver" />
+<meta property="og:site_name" content="Cloud Native Topics" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-07T10:16:00+00:00" />
+<script type="application/ld+json">
+{"description":"The article How to Configure Raspbian Linux discussed using the usb-storage.quirks parameter to bind to the right storage manager. This side note goes on to explain usb-storage.quirks in more detail.","url":"https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver"},"headline":"How to bind to the right USB storage driver","dateModified":"2020-03-07T10:16:00+00:00","datePublished":"2020-03-07T10:16:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body class="">
+    <!-- if the user has javascript disabled they can still use the menu -->
+<noscript>
+    <div class="no-js-menu clearfix">
+        <ul>
+            
+                <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+            
+                <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+            
+        </ul>
+    </div>
+</noscript>
+<!-- end no script -->
+
+    <header>
+    <span class="menu-trigger animated fadeInDown">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </span>
+
+    <div id="menu-target">
+    <ul>
+        
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+        
+            <li><i class="fa fa-user"></i><a href="/about/">About</a></li>
+        
+    </ul>
+</div>
+
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a href="/author/steve">Steve mitchell</a> in <a href='/category/side-notes'>Side notes</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 4 minutes
+            </p>
+
+            <h1>How to bind to the right USB storage driver</h1>
+
+            <p>The article <a href="/how-to-configure-raspbian-linux">How to Configure Raspbian Linux</a> discussed using the usb-storage.quirks parameter to bind to the right storage manager. This side note goes on to explain usb-storage.quirks in more detail.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> All you have to do for this step is to find the vendor and part number of your USB to mSATA adapter <a href="http://www.linux-usb.org/usb.ids">here</a> and append the usb-storage.quirks parameter to /boot/cmdline.txt. 
+ Given the vendor, 045b, and part, 0229, the parameter to add to /boot/cmdline.txt would look like this: “usb-storage.quirks=045b:3483:u”. This article goes on to explain why you need the usb-storage.quirks parameter, and how I found my vendor and part number. You can stop here if you found your vendor and part number on <a href="http://www.linux-usb.org/usb.ids">http://www.linux-usb.org/usb.ids</a>.
+</div>
+
+<p>Some posts I read about booting from SSD mentioned usb-storage.quirks. I began to worry that I had missed an important step. The issue is that in certain situations, the Linux “uas” storage driver disables SAT transfers. You can see which storage driver is in use with the lsusb command or dmesg command as shown below.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/lsusb_cmd.png" alt="Checking the Storage Drive type with lsusb" class="center-image" />
+    <figcaption class="image-caption">Checking the Storage Drive type with lsusb</figcaption>
+</figure>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/dmesg-scsi.png" alt="Checking the Storage Driver type using dmesg" class="center-image" />
+    <figcaption class="image-caption">Checking the Storage Driver type using dmesg</figcaption>
+</figure>
+
+<p>As you can see above, Raspbian uses the “uas” storage driver, not the older “usb_storage” driver. We need to keep the mSATA from binding to the uas storage driver with the usb-storage.quirks setting.</p>
+
+<p>The usb-storage.quirks parameter, e.g. “usb-storage.quirks=045b:3483:u”, is documented on the <a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html">Kernel Parameters page</a>. It documents that the “u” on the end instructs the kernel NOT to bind that vendor and part to the uas storage driver, thus avoiding the compatibility problems.</p>
+
+<blockquote>
+  <p>u = IGNORE_UAS (don’t bind to the uas driver)</p>
+</blockquote>
+
+<p>All you have to do is figure out the vendor and part number to use. To learn that, and a lot more, about your Raspberry Pi, you can install hwinfo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt-get <span class="nb">install </span>hwinfo
+hwinfo <span class="nt">--scsi</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The output shows my INDMEM mSATA is bound to the “uas” storage driver, but Vendor and Device are not hexadecimal numbers. To get those, I had to find my USB to mSATA converter.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/hwinfo_scsi_before.png" alt="mSATA attached to uas Storage Driver (which is not what we want)" class="center-image" />
+    <figcaption class="image-caption">mSATA attached to uas Storage Driver (which is not what we want)</figcaption>
+</figure>
+
+<p>I ran the hwinfo specifying “–all” and then I searched for “mSATA.” I found the renkforce mSATA Adapter.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>hwinfo <span class="nt">--all</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/hwinfo-usb-to-msata.png" alt="USB to mSATA Converter" class="center-image" />
+    <figcaption class="image-caption">USB to mSATA Converter</figcaption>
+</figure>
+
+<p>To verify that was what I needed, I went over to the Linux USB Id directory, <a href="http://www.linux-usb.org/usb.ids">http://www.linux-usb.org/usb.ids</a>, and looked up “renkforce”.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/usb.ids.png" alt="Vendor and Part from http://www.linux-usb.org/usb.ids" class="center-image" />
+    <figcaption class="image-caption">Vendor and Part from http://www.linux-usb.org/usb.ids</figcaption>
+</figure>
+
+<p>Feeling confident that I had the correct information, I made a backup of /boot/cmdline.txt, and then added the usb-storage.quirks parameter.</p>
+
+<p>console=serial0,115200 console=tty1 root=/dev/sda rootfstype=ext4 elevator=deadline fsck.repair=yes rootwai usb-storage.quirks=045b:0229:u</p>
+
+<p>After rebooting, I used hwinfo again to verify that the change had worked.</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/hwinfo_scsi_after.png" alt="The Drive Module is now usb_storage instead of uas" class="center-image" />
+    <figcaption class="image-caption">The Drive Module is now usb_storage instead of uas</figcaption>
+</figure>
+
+<p>Alternatively, I could have verified it worked with the lsusb command:</p>
+
+<figure class="center-image">
+    <img src="/img/post-assets/how-to-bind-to-the-right-usb-storage-driver/lsusb_after.png" alt="The Drive Module is now usb_storage instead of uas" class="center-image" />
+    <figcaption class="image-caption">The Drive Module is now usb_storage instead of uas</figcaption>
+</figure>
+
+<p>That’s it. You should now avoid any USB SATA compatibility issues caused by the “uas” storage driver.</p>
+
+<hr />
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html">https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html</a></li>
+  <li><a href="https://www.2daygeek.com/how-to-check-system-hardware-manufacturer-model-and-serial-number-in-linux/">https://www.2daygeek.com/how-to-check-system-hardware-manufacturer-model-and-serial-number-in-linux</a></li>
+  <li><a href="http://www.linux-usb.org/usb.ids">http://www.linux-usb.org/usb.ids</a></li>
+  <li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=245931">https://www.raspberrypi.org/forums/viewtopic.php?t=245931</a></li>
+</ul>
+
+
+            
+            
+<div id="disqus_thread"></div>
+<script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver';
+        this.page.identifier = 'https://smitchell.github.io/how-to-bind-to-the-right-usb-storage-driver';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloud-native-topics.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/comments.html?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            
+
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+
+    <script src='/js/vendor/modernizr.custom.32229-2.8-respondjs-1-4-2.js'></script>
+    <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src='/js/vendor/jquery.jpanelmenu.min.js'></script>
+    <script type='application/javascript' src='/js/vendor/fastclick.min.js'></script>
+    
+    <script src=' /js/main.js'></script>
+    <script id="dsq-count-scr" src="//cloud-native-topics.disqus.com/count.js" async></script>
+  </body>
+
+</html>
